@@ -4,11 +4,13 @@ export const FormSignInContent = styled.div`
   width: 400px;
   height: 450px;
   min-width: 350px;
-  background: #5CADB0;
+  background: rgb(58,217,223);
+  background: linear-gradient(155deg, rgba(58,217,223,1) 0%, rgba(92,173,176,1) 100%);
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
 
   & input, h2, button{
     margin: 7px;
@@ -24,7 +26,12 @@ export const FormSignInContent = styled.div`
     padding: 20px;
   }
 
+  .MuiTextField-root{
+    margin-bottom: 10px;
+  }
+
   & input {
+    background: #FFF;
     border: none;
     border-radius: 3px;
     padding-left: 10px;
@@ -37,26 +44,24 @@ export const FormSignInContent = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    & .blocked {
-      height: 27px;
-    }
-
-    & button{
-      height: 22px;
-      width: 100px;
-      background-color:  #EDF6FF;
-      border: 1px solid black;
-      border-radius: 3px;
-        
-      :hover{
-        color: #EDF6FF;
-        background-color: #7C0000;
-        border: 1px solid #EDF6FF;
-      }
   }
 
-    & a{
-    color:  #FFF;
+  & button{
+    text-transform: none;
+    background: #EDF6FF;
+    color: black;
+
+    :hover{
+      color: #EDF6FF;
+      background-color: #7C0000;
     }
+  }
+
+  & a{
+    color:  #FFF;
+  }
+
+  @media(max-width: 960px){
+    margin: 10px auto;
   }
 `
