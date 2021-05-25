@@ -10,7 +10,18 @@ export const FormSignInContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
+
+  .icon{
+    margin: 0 auto;
+    background: #7C0000;
+    width: 40px;
+    border-radius: 40px;
+    padding-top: 8px;
+    height: 32px;
+    color: #EDF6FF;
+  }
 
   & input, h2, button{
     margin: 7px;
@@ -26,8 +37,8 @@ export const FormSignInContent = styled.div`
     padding: 20px;
   }
 
-  .MuiTextField-root{
-    margin-bottom: 10px;
+  .MuiFormControl-root{
+    margin-bottom: 13px;
   }
 
   & input {
@@ -59,6 +70,8 @@ export const FormSignInContent = styled.div`
 
   & a{
     color:  #FFF;
+    cursor: pointer;
+    text-decoration: underline;
   }
 
   @media(max-width: 960px){
