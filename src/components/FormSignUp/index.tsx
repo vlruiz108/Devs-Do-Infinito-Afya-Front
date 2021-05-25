@@ -1,9 +1,10 @@
 import React, { useState, FormEvent } from 'react';
 
+import { FormSignUpContent } from './styles';
 import { toast } from 'react-toastify';
 
 import load from '../../assets/img/loading.gif';
-import { FormSignUpContent } from './styles';
+import { Button, TextField } from '@material-ui/core';
 
 interface IUserRegister {
   usuario: string;
@@ -33,22 +34,22 @@ const FormSignUp: React.FC = () => {
     <FormSignUpContent>
       <form onSubmit={handleCadastro}>
         <h2>Cadastre-se:</h2>
-        <input type="text" placeholder="Login"
+        <TextField id="outlined-basic" label="Login" type="text" variant="outlined" size="small" color="primary"
           onChange={e => setFormDataContent({ ...formDataContent, usuario: e.target.value })}
         />
-        <input type="text" placeholder="Nome"
+        <TextField id="outlined-basic" label="Nome" type="text" variant="outlined" size="small" color="primary"
           onChange={e => setFormDataContent({ ...formDataContent, nome: e.target.value })}
         />
-        <input type="password" placeholder="Senha"
+        <TextField id="outlined-basic" label="Senha" type="password" variant="outlined" size="small" color="primary"
           onChange={e => setFormDataContent({ ...formDataContent, senha: e.target.value })}
         />
-        {isRegistered ?
-          <button className="blocked" type="submit" disabled>
+        {isRegistered ? (
+          <Button variant="contained" color="primary" type="submit" disabled>
             <img src={load} alt="Loading" width="25px" height="auto" />
-          </button>
-          :
-          <button type="submit">Cadastrar</button>
-        }
+          </Button>
+        ) : (
+          <Button variant="contained" color="primary" type="submit">Cadastrar</Button>
+        )}
       </form>
     </FormSignUpContent>
   );
