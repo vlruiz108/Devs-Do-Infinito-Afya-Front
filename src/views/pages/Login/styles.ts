@@ -5,6 +5,7 @@ export const LoginContent = styled.div`
   justify-content: center;
   background-color: #EDF6FF;
   align-items: center;
+  text-align: center;
 
   & .container{
     padding-top: 150px;
@@ -20,6 +21,10 @@ export const LoginContent = styled.div`
     background: linear-gradient(155deg, rgba(152,0,0,1) 0%, rgba(124,0,0,1) 100%);
     justify-content: space-between;
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
+  }
+
+  & footer{
+    margin-top: 100px;
   }
 
   @media(max-width: 1550px) and (min-width: 961px) {

@@ -13,6 +13,9 @@ const Login: React.FC = () => {
           <FormSignUp />
           <FormSignIn />
         </div>
+        <footer>
+          Devs do Infinito - Afya Labs 06/2021.
+        </footer>
       </div>
     </LoginContent>
   );
