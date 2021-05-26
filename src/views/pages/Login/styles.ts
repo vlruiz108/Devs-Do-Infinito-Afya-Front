@@ -9,18 +9,27 @@ export const LoginContent = styled.div`
 
   & .container{
     padding-top: 150px;
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
   }
   
   & .col{
-    display: flex;
     border-radius: 17px;
     padding: 65px;
     background: rgb(152,0,0);
     background: linear-gradient(155deg, rgba(152,0,0,1) 0%, rgba(124,0,0,1) 100%);
-    justify-content: space-between;
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
+  }
+
+  & .MuiTabs-flexContainer{
+    color: #7C0000;
+    background-color: #EDF6FF;
+  }
+
+  & .MuiBox-root{
+    width: 400px;
+    height: 450px;
+    margin: 0 auto;    
   }
 
   & footer{
@@ -29,20 +38,22 @@ export const LoginContent = styled.div`
 
   @media(max-width: 1550px) and (min-width: 961px) {
     & .container{
-    padding-top: 150px;
+    padding-top: 50px;
     width: 85%;
     margin: 0 auto;
     }
   }
 
   @media(max-width: 960px){
-    height: 1080px;
-    
     & .container{
-      padding-top: 40px;
+      padding-top: 0;
       width: 100%;
       margin: 0 auto;
     }
+
+    & .iDYpI, .gKzJWm{
+    margin-top: 40px;
+  }
 
     & .col{
     background: none;

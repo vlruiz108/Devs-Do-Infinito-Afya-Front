@@ -47,11 +47,9 @@ const FormSignUp: React.FC = () => {
           onChange={e => setFormDataContent({ ...formDataContent, senha: e.target.value })}
         />
         {isRegistered ? (
-          <>
-            <Button variant="contained" color="primary" type="submit" disabled>
-              <CircularProgress size="20px" />
-            </Button>
-          </>
+          <Button variant="contained" color="primary" type="submit" disabled>
+            <CircularProgress size="20px" />
+          </Button>
         ) : (
           <Button variant="contained" color="primary" type="submit">Cadastrar</Button>
         )}

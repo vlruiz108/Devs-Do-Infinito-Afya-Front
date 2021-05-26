@@ -43,23 +43,20 @@ const FormSignIn: React.FC = () => {
           <LockIcon />
         </div>
         <h2>Faça o Login</h2>
-        <TextField id="outlined-basic" label="Login*" type="text" variant="outlined" size="small" color="primary"
+        <TextField id="outlined-basic" label="Login" type="text" variant="outlined" size="small" color="primary"
           onChange={e => setFormDataContent({ ...formDataContent, usuario: e.target.value })}
         />
-        <TextField id="outlined-basic" label="Senha*" type="password" variant="outlined" size="small" color="primary"
+        <TextField id="outlined-basic" label="Senha" type="password" variant="outlined" size="small" color="primary"
           onChange={e => setFormDataContent({ ...formDataContent, senha: e.target.value })}
         />
-        <div className="components">
-          {isLogged ? (
-            <>
-              <Button variant="contained" color="primary" type="submit" disabled>Login</Button>
-              <CircularProgress size="20px" />
-            </>
-          ) : (
-            <Button variant="contained" color="primary" type="submit">Login</Button>
-          )}
-          <a onClick={handleReset}> Esqueci minha senha</a>
-        </div>
+        {isLogged ? (
+          <Button variant="contained" color="primary" type="submit" disabled>
+            <CircularProgress size="20px" />
+          </Button>
+        ) : (
+          <Button variant="contained" color="primary" type="submit">Login</Button>
+        )}
+        <a onClick={handleReset}> Esqueci minha senha</a>
       </form>
     </FormSignInContent>
   );

@@ -50,13 +50,6 @@ export const FormSignInContent = styled.div`
     width: 250px;
   }
 
-  & .components{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-  }
-
   & button{
     text-transform: none;
     background: #EDF6FF;
@@ -69,6 +62,7 @@ export const FormSignInContent = styled.div`
   }
 
   & a{
+    margin-top: 5px;
     color:  #FFF;
     cursor: pointer;
     text-decoration: underline;
