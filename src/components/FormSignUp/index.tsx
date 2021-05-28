@@ -1,15 +1,19 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useCallback } from 'react';
 
 import { FormSignUpContent } from './styles';
+
+import api from '../../service/api';
+
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { Button, TextField, CircularProgress } from '@material-ui/core';
 import { AddCircle } from '@material-ui/icons';
 
 interface IUserRegister {
-  usuario: string;
-  nome: string;
-  senha: string;
+  user_name: string;
+  user_email: string;
+  user_pass: string;
 }
 
 const FormSignUp: React.FC = () => {
@@ -18,33 +22,39 @@ const FormSignUp: React.FC = () => {
 
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
 
-  const handleCadastro = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!(formDataContent.usuario === 'Teste')) {
+  const history = useHistory();
+
+  const RegisterSubmit = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
       setIsRegistered(true)
-      toast.success('Sucesso no cadastro!', {
-        onClose: () => setIsRegistered(false)
+      api.post('register', formDataContent).then(
+        response => {
+          console.log(response)
+          localStorage.setItem('@token', 'tokenTeste');
+          toast.success('Sucesso no cadastro!')
+          history.push('/home')
+        }
+      ).catch(err => toast.error('Ooops, algo deu errado')).finally(() => {
+        setIsRegistered(false)
       })
-    } else {
-      toast.error('Falha no cadastro!')
-    }
-  }
+    }, [formDataContent])
 
   return (
     <FormSignUpContent>
-      <form onSubmit={handleCadastro}>
+      <form onSubmit={RegisterSubmit}>
         <div className="icon">
           <AddCircle />
         </div>
         <h2>Cadastre-se</h2>
-        <TextField id="outlined-basic" label="Login*" type="text" variant="outlined" size="small" color="primary"
-          onChange={e => setFormDataContent({ ...formDataContent, usuario: e.target.value })}
+        <TextField id="email-register" label="Email*" type="email" variant="outlined" size="small" color="primary"
+          onChange={e => setFormDataContent({ ...formDataContent, user_email: e.target.value })}
         />
-        <TextField id="outlined-basic" label="Nome*" type="text" variant="outlined" size="small" color="primary"
-          onChange={e => setFormDataContent({ ...formDataContent, nome: e.target.value })}
+        <TextField id="name-register" label="Nome*" type="text" variant="outlined" size="small" color="primary"
+          onChange={e => setFormDataContent({ ...formDataContent, user_name: e.target.value })}
         />
-        <TextField id="outlined-basic" label="Senha*" type="password" variant="outlined" size="small" color="primary"
-          onChange={e => setFormDataContent({ ...formDataContent, senha: e.target.value })}
+        <TextField id="password-register" label="Senha*" type="password" variant="outlined" size="small" color="primary"
+          onChange={e => setFormDataContent({ ...formDataContent, user_pass: e.target.value })}
         />
         {isRegistered ? (
           <Button variant="contained" color="primary" type="submit" disabled>

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import TabBarPass from '../../../components/TabBarPass'
-
 import { LoginContent } from './styles';
+
+import TabBarPass from '../../../components/TabBarPass'
 
 const Login: React.FC = () => {
 

@@ -15,9 +15,7 @@ export const LoginContent = styled.div`
   
   & .col{
     border-radius: 17px;
-    padding: 65px;
-    background: rgb(152,0,0);
-    background: linear-gradient(155deg, rgba(152,0,0,1) 0%, rgba(124,0,0,1) 100%);
+    background: rgba(0,0,0,0.3);
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
   }
 
