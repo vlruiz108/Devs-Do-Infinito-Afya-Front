@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavbarContent = styled.nav`
-  width: 25%;
+  width: 20%;
   color: #EDF6FF;
   border-radius: 5px;
   margin: 10px;

@@ -5,18 +5,17 @@ export const GridContent = styled.div`
   display: flex;
   justify-content: space-around;
   font-size: 14px;
-  font-weight: bold;
 
   & .main-item{
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
-    background-color: #EDF6FF;
+    background-color: #fff;
     border-radius: 5px;
     width: 55%;
   }
 
   & .co-item{
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
-    background-color: #EDF6FF;
+    background-color: #fff;
     border-radius: 5px;
     width: 35%;
   }

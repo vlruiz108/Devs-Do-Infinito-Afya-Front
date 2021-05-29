@@ -1,24 +1,22 @@
 import React from 'react';
 
-import { HomeContent } from './styles';
+import { ConfigContent } from './styles';
 
-import MainDataGrid from '../../../components/MainDataGrid';
 import MainNavBar from '../../../components/MainNavBar';
 
-const Home: React.FC = () => {
-
+const Config: React.FC = () => {
   return (
-    <HomeContent>
+    <ConfigContent>
       <div id="main">
         <div className="container">
           <MainNavBar />
           <div className="content">
-            <MainDataGrid />
+            teste
           </div>
         </div>
       </div>
-    </HomeContent>
+    </ConfigContent>
   );
 }
 
-export default Home;
+export default Config;

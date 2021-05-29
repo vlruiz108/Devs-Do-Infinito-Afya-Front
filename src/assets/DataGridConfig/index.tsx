@@ -9,7 +9,7 @@ export const gridStyle = makeStyles(theme => ({
   }
 }));
 
-export const columnsA: GridColDef[] = [
+export const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', flex: 1 },
   { field: 'firstName', headerName: 'Nome', flex: 2 },
   { field: 'lastName', headerName: 'Ultimo nome', flex: 2 },
@@ -24,18 +24,6 @@ export const columnsA: GridColDef[] = [
 
 export const rowsA = [
   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-];
-
-export const columnsB: GridColDef[] = [
-  { field: 'id', headerName: 'ID', flex: 1 },
-  { field: 'nome', headerName: 'Nome', flex: 2 },
-  {
-    field: 'idade',
-    headerName: 'Idade',
-    type: 'number',
-    headerAlign: 'left',
-    flex: 1.3
-  }
 ];
 
 export const rowsB = [

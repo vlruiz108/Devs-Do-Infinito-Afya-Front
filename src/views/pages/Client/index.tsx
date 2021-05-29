@@ -1,24 +1,24 @@
 import React from 'react';
 
-import { HomeContent } from './styles';
+import { ClientContent } from './styles';
 
-import MainDataGrid from '../../../components/MainDataGrid';
 import MainNavBar from '../../../components/MainNavBar';
+import FormAddClient from '../../../components/FormAddClient';
 
-const Home: React.FC = () => {
 
+const Client: React.FC = () => {
   return (
-    <HomeContent>
+    <ClientContent>
       <div id="main">
         <div className="container">
           <MainNavBar />
           <div className="content">
-            <MainDataGrid />
+            <FormAddClient />
           </div>
         </div>
       </div>
-    </HomeContent>
+    </ClientContent>
   );
 }
 
-export default Home;
+export default Client;

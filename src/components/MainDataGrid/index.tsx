@@ -3,17 +3,17 @@ import React from 'react';
 import { GridContent } from './styles';
 
 import { DataGrid } from '@material-ui/data-grid';
-import { rowsA, columnsA, rowsB, columnsB } from '../../assets/DataGridConfig'
+import { rowsA, columns, rowsB } from '../../assets/DataGridConfig'
 
 const MainDataGrid: React.FC = () => {
 
   return (
     <GridContent>
       <div className="main-item">
-        <DataGrid rows={rowsA} columns={columnsA} pageSize={10} checkboxSelection />
+        <DataGrid rows={rowsA} columns={columns} pageSize={15} checkboxSelection />
       </div>
       <div className="co-item">
-        <DataGrid rows={rowsB} columns={columnsB} pageSize={10} checkboxSelection />
+        <DataGrid rows={rowsB} columns={columns} pageSize={15} checkboxSelection />
       </div>
     </GridContent>
   );
