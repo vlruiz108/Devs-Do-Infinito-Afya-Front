@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const NavbarContent = styled.nav`
   width: 20%;
+  height: 700px;
   color: #EDF6FF;
   border-radius: 5px;
   margin: 10px;
@@ -9,8 +10,6 @@ export const NavbarContent = styled.nav`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  /* background: rgb(152,0,0);
-  background: linear-gradient(155deg, rgba(152,0,0,1) 0%, rgba(124,0,0,1) 100%); */
   background-color: #EDF6FF;
   box-shadow: 4px 4px 6px 0px rgba(0,0,0,0.16);
   z-index: 1;

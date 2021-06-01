@@ -23,19 +23,9 @@ export const HomeContent = styled.div`
   & .content{
     display: flex;
     border-radius: 5px;
-    width: 80%;
-    margin:20px 40px;
+    width: 83.25%;
+    margin:20px 0 20px 20px;
     font-weight: bold;
-  }
-
-  & .primary-color{
-    color: #EDF6FF;
-    border-radius: 5px;
-    padding: 65px;
-    margin: 10px;
-    background: rgb(58,217,223);
-    background: linear-gradient(155deg, rgba(58,217,223,1) 0%, rgba(92,173,176,1) 100%);
-    box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
   }
 
   @media(max-width: 960px){

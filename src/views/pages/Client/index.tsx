@@ -5,7 +5,6 @@ import { ClientContent } from './styles';
 import MainNavBar from '../../../components/MainNavBar';
 import FormAddClient from '../../../components/FormAddClient';
 
-
 const Client: React.FC = () => {
   return (
     <ClientContent>
@@ -13,7 +12,9 @@ const Client: React.FC = () => {
         <div className="container">
           <MainNavBar />
           <div className="content">
-            <FormAddClient />
+            <div className="main-item">
+              <FormAddClient />
+            </div>
           </div>
         </div>
       </div>

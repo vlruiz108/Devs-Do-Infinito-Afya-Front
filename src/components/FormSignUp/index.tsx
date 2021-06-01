@@ -2,7 +2,7 @@ import React, { useState, FormEvent, useCallback } from 'react';
 
 import { FormSignUpContent } from './styles';
 
-import api from '../../service/api';
+import { api } from '../../service/api';
 
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
