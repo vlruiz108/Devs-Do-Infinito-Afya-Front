@@ -3,7 +3,7 @@ import React from 'react';
 import { ClientContent } from './styles';
 
 import MainNavBar from '../../../components/MainNavBar';
-import FormAddClient from '../../../components/FormAddClient';
+import TabBarAdd from '../../../components/TabBarAdd';
 
 const Client: React.FC = () => {
   return (
@@ -12,9 +12,7 @@ const Client: React.FC = () => {
         <div className="container">
           <MainNavBar />
           <div className="content">
-            <div className="main-item">
-              <FormAddClient />
-            </div>
+            <TabBarAdd />
           </div>
         </div>
       </div>

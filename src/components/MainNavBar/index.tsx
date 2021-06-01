@@ -39,11 +39,11 @@ const MainNavBar: React.FC = () => {
         )}
         {path === "/client" ? (
           <Button onClick={handleClick} name="/client" variant="contained" color="primary" disableElevation disabled>
-            + Paciente
+            Cadastrar
           </Button>
         ) : (
           <Button onClick={handleClick} name="/client" variant="contained" color="primary" disableElevation>
-            + Paciente
+            Cadastrar
           </Button>
         )}
         {path === "/pro" ? (

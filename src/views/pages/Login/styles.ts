@@ -13,7 +13,7 @@ export const LoginContent = styled.div`
     margin: 0 auto;
   }
   
-  & .col{
+  & .content{
     border-radius: 17px;
     background: rgba(0,0,0,0.3);
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
@@ -53,7 +53,7 @@ export const LoginContent = styled.div`
     margin-top: 40px;
   }
 
-    & .col{
+    & .content{
     background: none;
     box-shadow: none;
     display: block;

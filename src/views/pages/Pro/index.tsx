@@ -12,7 +12,6 @@ const Pro: React.FC = () => {
         <div className="container">
           <MainNavBar />
           <div className="content">
-            teste
           </div>
         </div>
       </div>

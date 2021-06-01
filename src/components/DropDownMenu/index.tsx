@@ -23,7 +23,7 @@ const DropDownMenu: React.FC = () => {
           )}
           {path !== '/client' && (
             <>
-              <Link to="/client">+ Paciente</Link>
+              <Link to="/client">Cadastrar</Link>
               <hr />
             </>
           )}

@@ -33,7 +33,7 @@ export const GridContent = styled.div`
     display: block;
     
     & .main-item {
-      height: 90vh;
+      height: 80vh;
       width: 100%;
       margin: 20px 0;
     }
