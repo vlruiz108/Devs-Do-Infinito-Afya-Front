@@ -4,6 +4,9 @@ import { Container } from './styles';
 import { Link } from 'react-router-dom';
 
 const DropDownMenu: React.FC = () => {
+
+  const path = window.location.pathname
+
   return (
     <Container>
       <label>
@@ -12,15 +15,31 @@ const DropDownMenu: React.FC = () => {
         <span></span>
         <span></span>
         <nav>
-          <Link to="/home">Home</Link>
-          <hr />
-          <Link to="">Item 2</Link>
-          <hr />
-          <Link to="">Item 3</Link>
-          <hr />
-          <Link to="">Item 4</Link>
+          {path !== '/home' && (
+            <>
+              <Link to="/home">Home</Link>
+              <hr />
+            </>
+          )}
+          {path !== '/client' && (
+            <>
+              <Link to="/client">+ Paciente</Link>
+              <hr />
+            </>
+          )}
+          {path !== '/pro' && (
+            <>
+              <Link to="/pro">+ Profissional</Link>
+              <hr />
+            </>
+          )}
+          {path !== '/config' && (
+            <>
+              <Link to="/config">Configurações</Link>
+            </>
+          )}
         </nav>
-      </label >
+      </label>
     </Container >
   );
 }

@@ -21,12 +21,26 @@ export const ClientContent = styled.div`
   }  
 
   & .content{
-    padding: 50px;
+    padding: 10px 45px;
+    width: 70%;
+    margin:20px 85px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  & .main-item{
+    width: 90%;
+    height: 820px;
     border-radius: 5px;
-    width: 74.5%;
-    background-color: #EDF6FF;
+    background: #EDF6FF;
+    padding: 20px;
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
-    margin:20px 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    
   }
 
   @media(max-width: 960px){
@@ -45,7 +59,12 @@ export const ClientContent = styled.div`
     & .content{
       width: 100%;
       height: 80vh;
-      margin: 0;
+      margin: 10px 0;
+      padding: 0;
+    }
+
+    & .main-item{
+      width: 100%;
     }
   }
 `

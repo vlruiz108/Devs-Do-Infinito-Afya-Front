@@ -23,8 +23,4 @@ export default createGlobalStyle`
     margin: 0;
     font-family: 'Lato', sans-serif;
   }
-
-  .palette.primary{
-
-  }
 `
