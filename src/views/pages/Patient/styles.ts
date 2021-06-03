@@ -38,12 +38,11 @@ export const ClientContent = styled.div`
     display: block;
     width: 100%;
     margin: 0 auto;
-    
     }
 
     & .content{
       width: 100%;
-      height: 80vh;
+      height: 95vh;
       margin: 10px 0;
       padding: 0;
     }

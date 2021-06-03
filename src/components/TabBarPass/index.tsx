@@ -1,7 +1,7 @@
 import React from 'react';
 
-import FormSignIn from '../../components/FormSignIn';
-import FormSignUp from '../../components/FormSignUp';
+import FormSignIn from '../TabBarComponents/FormSignIn';
+import FormSignUp from '../TabBarComponents/FormSignUp';
 import { TabPanel, a11yProps } from '../../assets/AppBarComponents'
 import { AddCircle, Lock } from '@material-ui/icons';
 import { AppBar, Tabs, Tab } from '@material-ui/core';

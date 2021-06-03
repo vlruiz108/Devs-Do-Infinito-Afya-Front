@@ -1,14 +1,14 @@
 import React from 'react';
 
-import FormAddPatient from '../FormAddPatient';
-import FormAddPro from '../FormAddPro';
+import FormAddPatient from '../TabBarComponents/FormAddPatient';
+import PatientDataGrid from '../TabBarComponents/PatientDataGrid';
 
 import { TabPanel, a11yProps } from '../../assets/AppBarComponents';
-import { AddCircle } from '@material-ui/icons';
+
+import { Group, GroupAdd } from '@material-ui/icons';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 
-
-const TabBarAdd: React.FC = () => {
+const TabBarPatient: React.FC = () => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -24,18 +24,18 @@ const TabBarAdd: React.FC = () => {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <Tab label="Cadastrar Paciente" icon={<AddCircle />}  {...a11yProps(0)} />
-          <Tab label="Cadastrar Profissional" icon={<AddCircle />} {...a11yProps(1)} />
+          <Tab label="Todos Pacientes" icon={<Group />}  {...a11yProps(0)} />
+          <Tab label="Cadastrar Paciente" icon={<GroupAdd />} {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <FormAddPatient />
+        <PatientDataGrid />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <FormAddPro />
+        <FormAddPatient />
       </TabPanel>
     </>
   );
 }
 
-export default TabBarAdd;
+export default TabBarPatient;

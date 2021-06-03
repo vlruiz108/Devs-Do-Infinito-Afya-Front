@@ -43,7 +43,7 @@ export const ProContent = styled.div`
 
     & .content{
       width: 100%;
-      height: 80vh;
+      height: 95vh;
       margin: 0;
     }
   }

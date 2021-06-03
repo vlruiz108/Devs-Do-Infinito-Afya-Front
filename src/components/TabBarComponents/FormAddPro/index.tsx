@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { FormAddProContent } from './styles';
 
-import { IPros, IProId, IZipContent } from '../../assets/FormAddClientConfig';
+import { IPros, IProId, IZipContent } from '../../../assets/FormAddClientConfig';
 
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 import { toast } from 'react-toastify';
 
-import { api, apiAdress } from '../../service/api';
+import { api, apiAddress } from '../../../service/api';
 
 const FormAddPro: React.FC = () => {
 
@@ -39,7 +39,7 @@ const FormAddPro: React.FC = () => {
   const handleZip = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
-      apiAdress.get(`/${ZipContent.cep}/json`).then(
+      apiAddress.get(`/${ZipContent.cep}/json`).then(
         response => {
           setFormDataContent({
             ...formDataContent,
@@ -89,7 +89,7 @@ const FormAddPro: React.FC = () => {
           <TextField label="CEP*" color="secondary"
             onChange={e => setZipContent({ ...ZipContent, cep: e.target.value })}
           />
-          <Button id="check-adress" onClick={handleZip} variant="contained" color="secondary" disableElevation>Verificar</Button>
+          <Button id="check-address" onClick={handleZip} variant="contained" color="secondary" disableElevation>Verificar</Button>
         </div>
         <TextField label="Rua*" color="secondary" value={formDataContent.street} focused
           onChange={e => setFormDataContent({ ...formDataContent, street: e.target.value })}
