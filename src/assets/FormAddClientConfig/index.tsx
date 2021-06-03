@@ -1,4 +1,4 @@
-export interface IClientId {
+export interface IPatientId {
   client_name: string;
   cpf: string;
   phone?: string;
@@ -11,6 +11,25 @@ export interface IClientId {
   district: string;
   locale: string;
   uf: string;
+}
+
+export interface IProId {
+  client_name: string;
+  cpf: string;
+  phone?: string;
+  cellphone?: string;
+  email: string;
+  pro_type: string | unknown;
+  zip_code: string;
+  street: string;
+  number: string;
+  district: string;
+  locale: string;
+  uf: string;
+}
+
+export interface IPros {
+  [index: string]: { id: number; name: string | readonly string[] };
 }
 
 export interface IZipContent {

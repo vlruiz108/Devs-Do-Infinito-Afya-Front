@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://localhost:3004/'
+  baseURL: 'http://devs-agmed-afya.herokuapp.com/'
 })
 
-export const apiAdress = axios.create({
+export const apiAddress = axios.create({
   baseURL: 'https://viacep.com.br/ws'
 })
 
-export const apiChuck = axios.create({
-  baseURL: 'https://api.chucknorris.io/'
+export const apiTeste = axios.create({
+  baseURL: 'https://localhost:3004/'
 })

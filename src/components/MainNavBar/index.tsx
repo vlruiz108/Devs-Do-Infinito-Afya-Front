@@ -37,22 +37,22 @@ const MainNavBar: React.FC = () => {
             Home
           </Button>
         )}
-        {path === "/client" ? (
-          <Button onClick={handleClick} name="/client" variant="contained" color="primary" disableElevation disabled>
-            + Paciente
+        {path === "/patient" ? (
+          <Button onClick={handleClick} name="/patient" variant="contained" color="primary" disableElevation disabled>
+            Pacientes
           </Button>
         ) : (
-          <Button onClick={handleClick} name="/client" variant="contained" color="primary" disableElevation>
-            + Paciente
+          <Button onClick={handleClick} name="/patient" variant="contained" color="primary" disableElevation>
+            Pacientes
           </Button>
         )}
         {path === "/pro" ? (
           <Button onClick={handleClick} name="/pro" variant="contained" color="primary" disableElevation disabled>
-            + Profissional
+            Profissionais
           </Button>
         ) : (
           <Button onClick={handleClick} name="/pro" variant="contained" color="primary" disableElevation>
-            + Profissional
+            Profissionais
           </Button>
         )}
         {path === "/config" ? (

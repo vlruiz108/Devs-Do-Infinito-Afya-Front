@@ -2,7 +2,7 @@ import React, { useState, FormEvent, useCallback } from 'react';
 
 import { FormSignInContent } from './styles';
 
-import { api } from '../../service/api';
+import { api } from '../../../service/api';
 
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -29,8 +29,7 @@ const FormSignIn: React.FC = () => {
       setIsLogged(true)
       api.post('login', formDataContent).then(
         response => {
-          console.log(response)
-          localStorage.setItem('@token', 'tokenTeste');
+          localStorage.setItem('@TokenAGMed', response.data.token);
           toast.success('Sucesso no login!')
           history.push('/home')
         }

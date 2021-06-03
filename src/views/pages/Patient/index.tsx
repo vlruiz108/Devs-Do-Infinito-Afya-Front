@@ -3,18 +3,16 @@ import React from 'react';
 import { ClientContent } from './styles';
 
 import MainNavBar from '../../../components/MainNavBar';
-import FormAddClient from '../../../components/FormAddClient';
+import TabBarPatient from '../../../components/TabBarPatient';
 
-const Client: React.FC = () => {
+const Patient: React.FC = () => {
   return (
     <ClientContent>
       <div id="main">
         <div className="container">
           <MainNavBar />
           <div className="content">
-            <div className="main-item">
-              <FormAddClient />
-            </div>
+            <TabBarPatient />
           </div>
         </div>
       </div>
@@ -22,4 +20,4 @@ const Client: React.FC = () => {
   );
 }
 
-export default Client;
+export default Patient;

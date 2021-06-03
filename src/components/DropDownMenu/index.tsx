@@ -21,15 +21,15 @@ const DropDownMenu: React.FC = () => {
               <hr />
             </>
           )}
-          {path !== '/client' && (
+          {path !== '/patient' && (
             <>
-              <Link to="/client">+ Paciente</Link>
+              <Link to="/patient">Pacientes</Link>
               <hr />
             </>
           )}
           {path !== '/pro' && (
             <>
-              <Link to="/pro">+ Profissional</Link>
+              <Link to="/pro">Profissionais</Link>
               <hr />
             </>
           )}

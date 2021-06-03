@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   return (
     <LoginContent>
       <div className="container">
-        <div className="col">
+        <div className="content">
           <TabBarPass />
         </div>
         <footer>

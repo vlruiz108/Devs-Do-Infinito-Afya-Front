@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { GridContent } from './styles';
 
 import { DataGrid } from '@material-ui/data-grid';
 import { columns, IRow } from '../../assets/DataGridConfig'
 
-import { api } from '../../service/api';
+import { apiTeste } from '../../service/api';
 
 const MainDataGrid: React.FC = () => {
 
@@ -13,7 +13,7 @@ const MainDataGrid: React.FC = () => {
   const [rowB, setRowB] = useState<IRow[]>([])
 
   useEffect(() => {
-    api.get('datas').then(
+    apiTeste.get('datas').then(
       response => {
         setRowA(response.data)
         setRowB(response.data)

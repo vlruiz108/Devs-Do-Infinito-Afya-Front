@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { ptBR } from '@material-ui/data-grid';
 
 export const theme = createMuiTheme({
   palette: {
@@ -15,7 +16,7 @@ export const theme = createMuiTheme({
       contrastText: '#EDF6FF',
     },
   },
-});
+}, ptBR);
 
 export default createGlobalStyle`
   *{
