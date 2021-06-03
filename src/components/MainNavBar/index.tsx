@@ -18,9 +18,15 @@ const MainNavBar: React.FC = () => {
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const btnPath = e.currentTarget.getAttribute('name')
-    // e.currentTarget.style.display = 'none'
     btnPath && history.push(btnPath);
   };
+
+  const items = [
+    { name: 'Home', path: '/home' },
+    { name: 'Pacientes', path: '/patient' },
+    { name: 'Profissionais', path: '/pro' },
+    { name: 'Configurações', path: '/config' }
+  ]
 
   return (
     <NavbarContent>
@@ -28,41 +34,12 @@ const MainNavBar: React.FC = () => {
         <img src={Logo} alt="Logo AGmed" />
       </NavLink>
       <div id="navbar">
-        {path === "/home" ? (
-          <Button onClick={handleClick} name="/home" variant="contained" color="primary" disableElevation disabled>
-            Home
-          </Button>
-        ) : (
-          <Button onClick={handleClick} name="/home" variant="contained" color="primary" disableElevation>
-            Home
-          </Button>
-        )}
-        {path === "/patient" ? (
-          <Button onClick={handleClick} name="/patient" variant="contained" color="primary" disableElevation disabled>
-            Pacientes
-          </Button>
-        ) : (
-          <Button onClick={handleClick} name="/patient" variant="contained" color="primary" disableElevation>
-            Pacientes
-          </Button>
-        )}
-        {path === "/pro" ? (
-          <Button onClick={handleClick} name="/pro" variant="contained" color="primary" disableElevation disabled>
-            Profissionais
-          </Button>
-        ) : (
-          <Button onClick={handleClick} name="/pro" variant="contained" color="primary" disableElevation>
-            Profissionais
-          </Button>
-        )}
-        {path === "/config" ? (
-          <Button onClick={handleClick} name="/config" variant="contained" color="primary" disableElevation disabled>
-            Configurações
-          </Button>
-        ) : (
-          <Button onClick={handleClick} name="/config" variant="contained" color="primary" disableElevation>
-            Configurações
-          </Button>
+        {items.map((item, i) => {
+          return path === item.path ?
+            <Button key={i} onClick={handleClick} name={item.path} variant="contained" color="primary" disableElevation disabled>{item.name}</Button>
+            :
+            <Button key={i} onClick={handleClick} name={item.path} variant="contained" color="primary" disableElevation>{item.name}</Button>
+        }
         )}
       </div>
       <DropDownMenu />
