@@ -1,9 +1,14 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import { CPFInput, PhoneInput } from '../../../assets/MaskedInputs';
 
 const Teste: React.FC = () => {
-  return <div />;
+  return (
+    <div>
+      <CPFInput />
+      <PhoneInput />
+    </div>
+  );
 }
 
 export default Teste;

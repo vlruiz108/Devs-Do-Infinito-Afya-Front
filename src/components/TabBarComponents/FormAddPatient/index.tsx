@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 
+import { CPFInput, PhoneInput, ZipInput } from '../../../assets/MaskedInputs';
 import { FormAddPatientContent } from './styles';
 
 import { IPatientId, IZipContent } from '../../../assets/FormAddClientConfig';
@@ -50,16 +51,16 @@ const FormAddPatient: React.FC = () => {
         <TextField label="Nome*" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, client_name: e.target.value })}
         />
-        <TextField label="CPF*" color="secondary"
+        <CPFInput label="CPF*" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, cpf: e.target.value })}
         />
         <TextField label="Email*" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, email: e.target.value })}
         />
-        <TextField label="Telefone" color="secondary"
+        <PhoneInput label="Telefone" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, phone: e.target.value })}
         />
-        <TextField label="Celular" color="secondary"
+        <PhoneInput label="Celular" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, cellphone: e.target.value })}
         />
         <FormControl color="secondary">
@@ -83,7 +84,7 @@ const FormAddPatient: React.FC = () => {
           </Select>
         </FormControl>
         <div>
-          <TextField label="CEP*" color="secondary"
+          <ZipInput label="Cep" color="secondary"
             onChange={e => setZipContent({ ...ZipContent, cep: e.target.value })}
           />
           <Button id="check-address" onClick={handleZip} variant="contained" color="secondary" disableElevation>Verificar</Button>

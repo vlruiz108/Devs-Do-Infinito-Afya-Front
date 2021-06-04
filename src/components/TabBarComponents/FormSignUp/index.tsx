@@ -34,7 +34,13 @@ const FormSignUp: React.FC = () => {
           toast.success('Sucesso no cadastro!')
           history.push('/home')
         }
-      ).catch(err => toast.error('Ooops, algo deu errado')).finally(() => {
+      ).catch(err => {
+        if (err.response.status === 400) {
+          toast.error('Dados já cadastrados, digite dados diferentes')
+        } else {
+          toast.error('Ooops, algo deu errado')
+        }
+      }).finally(() => {
         setIsRegistered(false)
       })
     }, [formDataContent])

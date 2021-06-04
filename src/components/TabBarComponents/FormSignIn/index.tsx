@@ -33,7 +33,13 @@ const FormSignIn: React.FC = () => {
           toast.success('Sucesso no login!')
           history.push('/home')
         }
-      ).catch(err => toast.error('Ooops, algo deu errado')).finally(() => {
+      ).catch(err => {
+        if (err.response.status === 400) {
+          toast.error('Dados inválidos, digite novamente')
+        } else {
+          toast.error('Ooops, algo deu errado')
+        }
+      }).finally(() => {
         setIsLogged(false)
       })
     }, [formDataContent])
