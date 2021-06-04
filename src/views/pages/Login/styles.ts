@@ -17,6 +17,7 @@ export const LoginContent = styled.div`
     border-radius: 17px;
     background: rgba(0,0,0,0.3);
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
+    padding-bottom: 20px;
   }
 
   & .MuiTabs-flexContainer{

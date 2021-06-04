@@ -41,7 +41,7 @@ export const GridContent = styled.div`
     & .co-item{
       height: 80vh;
       width: 100%;
-      margin-top: 150px;
+      margin-top: 225px;
     }
 
   }

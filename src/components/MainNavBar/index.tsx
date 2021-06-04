@@ -9,6 +9,15 @@ import { NavLink } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
+export const items = [
+  { name: 'Home', path: '/home' },
+  { name: 'Agendamentos', path: '/schedule' },
+  { name: 'Prontuários', path: '/medrecord' },
+  { name: 'Pacientes', path: '/patient' },
+  { name: 'Profissionais', path: '/pro' },
+  { name: 'Configurações', path: '/config' }
+]
+
 const MainNavBar: React.FC = () => {
 
   const history = useHistory();
@@ -20,13 +29,6 @@ const MainNavBar: React.FC = () => {
     const btnPath = e.currentTarget.getAttribute('name')
     btnPath && history.push(btnPath);
   };
-
-  const items = [
-    { name: 'Home', path: '/home' },
-    { name: 'Pacientes', path: '/patient' },
-    { name: 'Profissionais', path: '/pro' },
-    { name: 'Configurações', path: '/config' }
-  ]
 
   return (
     <NavbarContent>

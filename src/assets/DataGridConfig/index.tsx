@@ -1,25 +1,49 @@
 import { GridCellParams, GridColDef } from '@material-ui/data-grid';
 
+export interface IRawRow {
+  id_attendance: number | undefined,
+  schedule_date: string,
+  attendance_date: string,
+  attendance_value: string,
+  attendance_status: string,
+  FK_id_med_reg: number,
+  FK_id_specialist: number,
+  id_med_reg: number,
+  med_reg_date: string,
+  FK_id_client: number,
+  id_specialist: number,
+  register: string,
+  specialist_name: string,
+  phone: string,
+  cellphone: string,
+  email: string,
+  FK_id_address: number,
+  FK_id_profession: number
+}
+
 export interface IRow {
-  [index: number]: { id: string; name: string; age: string; date: string; };
+  id: number | undefined,
+  attendance_date: string,
+  specialist_name: string,
+  email: string,
 }
 
 
 export const columns: GridColDef[] = [
-  { field: 'name', headerName: 'Nome', flex: 2 },
   {
-    field: 'age',
-    headerName: 'Idade',
-    type: 'number',
+    field: 'attendance_date',
+    headerName: 'Data',
+    flex: 2
+  },
+  {
+    field: 'specialist_name',
+    headerName: 'Profissional',
     headerAlign: 'left',
     flex: 1.3
   },
   {
-    field: 'date',
-    headerName: 'Data',
-    renderCell: (params: GridCellParams) => (
-      <p>(params.value as Date).getFullYear()</p>
-    ),
+    field: 'email',
+    headerName: 'Email',
     flex: 2
   }
 ];
