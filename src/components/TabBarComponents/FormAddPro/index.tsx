@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+import { CPFInput, PhoneInput, ZipInput } from '../../../assets/MaskedInputs';
 import { FormAddProContent } from './styles';
 
 import { IPros, IProId, IZipContent } from '../../../assets/FormAddClientConfig';
 
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+import { Button, FormControl, Input, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 import { toast } from 'react-toastify';
 
 import { api, apiAddress } from '../../../service/api';
@@ -18,11 +19,21 @@ const FormAddPro: React.FC = () => {
   const [ZipContent, setZipContent] = useState<IZipContent>({} as IZipContent);
 
   useEffect(() => {
-    api.get('/pros').then(
+    api.get('/profession', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
+      }
+    }).then(
       response => {
         setPros(response.data)
       }
-    ).catch(err => { console.log(err) })
+    ).catch(err => {
+      console.error(err)
+      // if (err.response.status === 401) {
+      //   localStorage.removeItem('@TokenAGMed')
+      //   toast.error('Sessão expirada, faça login novamente')
+      // }
+    })
   }, [])
 
   const proSubmit = useCallback(
@@ -51,7 +62,7 @@ const FormAddPro: React.FC = () => {
           })
           console.log(formDataContent)
         }
-      ).catch(err => toast.error('Ooops, algo deu errado'))
+      ).catch(err => { toast.error('Ooops, algo deu errado') })
     }, [ZipContent, formDataContent])
 
   return (
@@ -60,16 +71,16 @@ const FormAddPro: React.FC = () => {
         <TextField label="Nome*" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, client_name: e.target.value })}
         />
-        <TextField label="CPF*" color="secondary"
+        <CPFInput label="CPF*" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, cpf: e.target.value })}
         />
         <TextField label="Email*" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, email: e.target.value })}
         />
-        <TextField label="Telefone" color="secondary"
+        <PhoneInput label="Telefone" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, phone: e.target.value })}
         />
-        <TextField label="Celular" color="secondary"
+        <PhoneInput label="Celular" color="secondary"
           onChange={e => setFormDataContent({ ...formDataContent, cellphone: e.target.value })}
         />
         <FormControl color="secondary">
@@ -82,11 +93,11 @@ const FormAddPro: React.FC = () => {
             <MenuItem value='null'>
               <em>None</em>
             </MenuItem>
-            {pros.map((pro, i) => <MenuItem key={i} value={pro?.name as any}>{pro?.name}</MenuItem>)}
+            {pros.map((pro, i) => <MenuItem key={i} value={pro?.profession_name as any}>{pro?.profession_name}</MenuItem>)}
           </Select>
         </FormControl>
         <div>
-          <TextField label="CEP*" color="secondary"
+          <ZipInput label="Cep" color="secondary"
             onChange={e => setZipContent({ ...ZipContent, cep: e.target.value })}
           />
           <Button id="check-address" onClick={handleZip} variant="contained" color="secondary" disableElevation>Verificar</Button>

@@ -24,13 +24,13 @@ const MainDataGrid: React.FC = () => {
   return (
     <GridContent>
       <section className="main-item">
-        <h2>Tabela-1</h2>
+        <h2>Agendamentos do dia</h2>
         <div>
           <DataGrid className="grid" rows={rowA} columns={columns} pageSize={12} checkboxSelection />
         </div>
       </section>
       <section className="co-item">
-        <h2>Tabela-2</h2>
+        <h2>Próximos agendamentos</h2>
         <div>
           <DataGrid className="grid" rows={rowB} columns={columns} pageSize={12} checkboxSelection />
         </div>

@@ -1,7 +1,7 @@
-import { GridColDef } from '@material-ui/data-grid';
+import { GridCellParams, GridColDef } from '@material-ui/data-grid';
 
 export interface IRow {
-  [index: string]: { id: number; name: string; age: number, date: string };
+  [index: number]: { id: string; name: string; age: string; date: string; };
 }
 
 
@@ -14,5 +14,12 @@ export const columns: GridColDef[] = [
     headerAlign: 'left',
     flex: 1.3
   },
-  { field: 'date', headerName: 'Data', flex: 2 }
+  {
+    field: 'date',
+    headerName: 'Data',
+    renderCell: (params: GridCellParams) => (
+      <p>(params.value as Date).getFullYear()</p>
+    ),
+    flex: 2
+  }
 ];

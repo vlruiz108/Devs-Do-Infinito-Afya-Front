@@ -7,7 +7,7 @@ export const GridContent = styled.div`
   font-size: 14px;
 
   & h2 {
-    line-height: 34px;
+    line-height: 52px;
   }
 
   & .main-item{
@@ -26,7 +26,7 @@ export const GridContent = styled.div`
 
   & .grid{
     background-color: #fff;
-    height: 870px;
+    height: 850px;
   }
 
   @media(max-width: 960px){
