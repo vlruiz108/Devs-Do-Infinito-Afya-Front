@@ -1,18 +1,17 @@
 import React from 'react';
 
-import { ProContent } from './styles';
+import { ScheduleContent } from './styles';
+
+import FormAddPro from '../../../components/TabBarComponents/FormAddPro';
 
 import MainNavBar from '../../../components/MainNavBar';
-
 import TabBar from '../../../components/TabBar';
-import FormAddPro from '../../../components/TabBarComponents/FormAddPro';
-import ProDataGrid from '../../../components/TabBarComponents/ProDataGrid';
 
 import { AssignmentInd, PersonAdd } from '@material-ui/icons';
 
-const Pro: React.FC = () => {
+const Schedules: React.FC = () => {
   return (
-    <ProContent>
+    <ScheduleContent>
       <div id="main">
         <div className="container">
           <MainNavBar />
@@ -20,16 +19,16 @@ const Pro: React.FC = () => {
             <TabBar
               FIcon={<AssignmentInd />}
               SIcon={<PersonAdd />}
-              FLabel="Todos Profissionais"
-              SLabel="Cadastrar Profissional"
-              FContent={ProDataGrid}
+              FLabel="Todos Agendamentos"
+              SLabel="Cadastrar Agendamento"
+              FContent={FormAddPro}
               SContent={FormAddPro}
             />
           </div>
         </div>
       </div>
-    </ProContent>
+    </ScheduleContent>
   );
 }
 
-export default Pro;
+export default Schedules;

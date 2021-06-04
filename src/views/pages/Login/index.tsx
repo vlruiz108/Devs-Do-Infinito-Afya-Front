@@ -2,7 +2,10 @@ import React from 'react';
 
 import { LoginContent } from './styles';
 
-import TabBarPass from '../../../components/TabBarPass'
+import TabBar from '../../../components/TabBar';
+import { AddCircle, Lock } from '@material-ui/icons';
+import FormSignIn from '../../../components/TabBarComponents/FormSignIn';
+import FormSignUp from '../../../components/TabBarComponents/FormSignUp';
 
 const Login: React.FC = () => {
 
@@ -10,7 +13,14 @@ const Login: React.FC = () => {
     <LoginContent>
       <div className="container">
         <div className="content">
-          <TabBarPass />
+          <TabBar
+            FIcon={<Lock />}
+            SIcon={<AddCircle />}
+            FLabel="Login"
+            SLabel="Cadastro"
+            FContent={FormSignIn}
+            SContent={FormSignUp}
+          />
         </div>
         <footer>
           Devs do Infinito - Afya Labs 06/2021.

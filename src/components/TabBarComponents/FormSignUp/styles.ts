@@ -12,6 +12,7 @@ export const FormSignUpContent = styled.div`
   align-items: center;
   text-align: center;
   box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
+  margin: 0 auto;
 
   .icon{
     margin: 0 auto;

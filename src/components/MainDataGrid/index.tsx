@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { GridContent } from './styles';
 
 import { DataGrid } from '@material-ui/data-grid';
-import { columns, IRow } from '../../assets/DataGridConfig'
+import { columns, IRawRow, IRow } from '../../assets/DataGridConfig'
 
-import { apiTeste } from '../../service/api';
+import { api } from '../../service/api';
 
 const MainDataGrid: React.FC = () => {
 
@@ -13,13 +13,24 @@ const MainDataGrid: React.FC = () => {
   const [rowB, setRowB] = useState<IRow[]>([])
 
   useEffect(() => {
-    apiTeste.get('datas').then(
+    api.get('attendance', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
+      }
+    }).then(
       response => {
+        // let datas = response.data
         setRowA(response.data)
-        setRowB(response.data)
+        // datas.map((data: any, i: any) => {
+        //   console.log(data.id_attendance)
+        // })
+        // for (let i = 0; i < datas.length; i++) {
+        //   rowA[i].id = datas[i].id_attendance
+        //   console.log(rowA[i])
+        // }
       }
     ).catch(err => { console.log(err) }).finally(() => { })
-  }, [])
+  }, [rowA])
 
   return (
     <GridContent>
