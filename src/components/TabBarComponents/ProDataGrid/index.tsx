@@ -5,15 +5,20 @@ import { GridContent } from './styles';
 import { DataGrid } from '@material-ui/data-grid';
 import { columns, IRow } from '../../../assets/DataGridConfig'
 
-import { apiTeste } from '../../../service/api';
+import { api } from '../../../service/api';
 
 const ProDataGrid: React.FC = () => {
 
   const [row, setRow] = useState<IRow[]>([])
 
   useEffect(() => {
-    apiTeste.get('datas').then(
+    api.get('specialist', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
+      }
+    }).then(
       response => {
+        console.log(response.data)
         setRow(response.data)
       }
     ).catch(err => { console.log(err) })

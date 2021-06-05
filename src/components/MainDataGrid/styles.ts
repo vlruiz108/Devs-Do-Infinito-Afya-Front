@@ -14,19 +14,23 @@ export const GridContent = styled.div`
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
     background-color: #EDF6FF;
     border-radius: 5px;
-    width: 55%;
+    width: 52.5%;
   }
 
   & .co-item{
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
     background-color: #EDF6FF;
     border-radius: 5px;
-    width: 35%;
+    width: 37.5%;
   }
 
   & .grid{
     background-color: #fff;
     height: 850px;
+  }
+
+  & .value-1{
+    background-color: #EDF6FF;
   }
 
   @media(max-width: 960px){

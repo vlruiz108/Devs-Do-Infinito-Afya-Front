@@ -25,6 +25,20 @@ export const NavbarContent = styled.nav`
     display: block;
     color: #000;
     font-weight: bold;
+
+    :last-child{
+      margin-top: 14px;
+      height: 60px;
+      display: flex;
+      border-top: 1px solid #000;
+    }
+
+    }
+
+    & .icon{
+      color: black;
+      font-weight: bold;
+      font-size: 14px;
     }
   }
 

@@ -12,7 +12,7 @@ import LockIcon from '@material-ui/icons/Lock';
 
 interface IUserLogin {
   user_email: string;
-  user_pass: string;
+  password: string;
 }
 
 const FormSignIn: React.FC = () => {
@@ -59,7 +59,7 @@ const FormSignIn: React.FC = () => {
           onChange={e => setFormDataContent({ ...formDataContent, user_email: e.target.value })}
         />
         <TextField id="password-login" label="Senha" type="password" variant="outlined" size="small" color="primary"
-          onChange={e => setFormDataContent({ ...formDataContent, user_pass: e.target.value })}
+          onChange={e => setFormDataContent({ ...formDataContent, password: e.target.value })}
         />
         {isLogged ? (
           <Button variant="contained" color="primary" type="submit" disabled>
