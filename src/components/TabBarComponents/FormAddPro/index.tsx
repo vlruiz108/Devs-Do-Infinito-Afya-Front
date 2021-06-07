@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { CPFInput, PhoneInput, ZipInput } from '../../../assets/MaskedInputs';
+import { CPFInput, PhoneInput, ZipInput } from '../../MaskedInputs';
 import { FormAddProContent } from './styles';
 
 import { IPros, IProId, IZipContent } from '../../../assets/FormAddClientConfig';
 
-import { Button, FormControl, Input, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+import { Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 import { toast } from 'react-toastify';
 
 import { api, apiAddress } from '../../../service/api';
@@ -18,8 +18,10 @@ const FormAddPro: React.FC = () => {
 
   const [ZipContent, setZipContent] = useState<IZipContent>({} as IZipContent);
 
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
   useEffect(() => {
-    api.get('/profession', {
+    api.get('profession', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
       }
@@ -39,17 +41,25 @@ const FormAddPro: React.FC = () => {
   const proSubmit = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
-      api.post('/addpro', formDataContent).then(
+      setIsLoaded(true)
+      api.post('specialist', formDataContent, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
+        }
+      }).then(
         response => {
           toast.success('Sucesso no cadastro!')
           console.log(formDataContent)
         }
-      ).catch(err => toast.error('Ooops, algo deu errado'))
+      ).catch(err => toast.error('Ooops, algo deu errado')).finally(() => {
+        setIsLoaded(false)
+      })
     }, [formDataContent])
 
   const handleZip = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
+      setIsLoaded(true)
       apiAddress.get(`/${ZipContent.cep}/json`).then(
         response => {
           setFormDataContent({
@@ -62,28 +72,30 @@ const FormAddPro: React.FC = () => {
           })
           console.log(formDataContent)
         }
-      ).catch(err => { toast.error('Ooops, algo deu errado') })
+      ).catch(err => { toast.error('Ooops, algo deu errado') }).finally(() => {
+        setIsLoaded(false)
+      })
     }, [ZipContent, formDataContent])
 
   return (
     <FormAddProContent>
       <form className="form-field">
-        <TextField label="Nome*" color="secondary"
-          onChange={e => setFormDataContent({ ...formDataContent, client_name: e.target.value })}
+        <TextField label="Nome*" color="primary"
+          onChange={e => setFormDataContent({ ...formDataContent, name: e.target.value })}
         />
-        <CPFInput label="CPF*" color="secondary"
+        <CPFInput label="CPF*" color="primary"
           onChange={e => setFormDataContent({ ...formDataContent, cpf: e.target.value })}
         />
-        <TextField label="Email*" color="secondary"
+        <TextField label="Email*" color="primary"
           onChange={e => setFormDataContent({ ...formDataContent, email: e.target.value })}
         />
-        <PhoneInput label="Telefone" color="secondary"
+        <PhoneInput label="Telefone" color="primary"
           onChange={e => setFormDataContent({ ...formDataContent, phone: e.target.value })}
         />
-        <PhoneInput label="Celular" color="secondary"
+        <PhoneInput label="Celular" color="primary"
           onChange={e => setFormDataContent({ ...formDataContent, cellphone: e.target.value })}
         />
-        <FormControl color="secondary">
+        <FormControl color="primary">
           <InputLabel id="blood-pro" >Profissão*</InputLabel>
           <Select
             labelId="blood-pro"
@@ -91,34 +103,44 @@ const FormAddPro: React.FC = () => {
             onChange={e => setFormDataContent({ ...formDataContent, pro_type: e.target.value })}
           >
             <MenuItem value='null'>
-              <em>None</em>
+              <em>Escolha a profissão</em>
             </MenuItem>
             {pros.map((pro, i) => <MenuItem key={i} value={pro?.profession_name as any}>{pro?.profession_name}</MenuItem>)}
           </Select>
         </FormControl>
         <div>
-          <ZipInput label="Cep" color="secondary"
+          <ZipInput label="CEP*" color="primary"
             onChange={e => setZipContent({ ...ZipContent, cep: e.target.value })}
           />
-          <Button id="check-address" onClick={handleZip} variant="contained" color="secondary" disableElevation>Verificar</Button>
+          {isLoaded ? (
+            <Button id="check-address" onClick={handleZip} variant="contained" color="primary" disableElevation disabled>Verificar</Button>
+          ) : (
+            <Button id="check-address" onClick={handleZip} variant="contained" color="primary" disableElevation>Verificar</Button>
+          )}
         </div>
-        <TextField label="Rua*" color="secondary" value={formDataContent.street} focused
+        <TextField label="Rua*" color="primary" value={formDataContent.street} focused
           onChange={e => setFormDataContent({ ...formDataContent, street: e.target.value })}
         />
-        <TextField label="Número*" color="secondary" value={formDataContent.number} focused
+        <TextField label="Número*" color="primary" value={formDataContent.number} focused
           onChange={e => setFormDataContent({ ...formDataContent, number: e.target.value })}
         />
-        <TextField label="Bairro*" color="secondary" value={formDataContent.district} focused
+        <TextField label="Bairro*" color="primary" value={formDataContent.district} focused
           onChange={e => setFormDataContent({ ...formDataContent, district: e.target.value })}
         />
-        <TextField label="Cidade*" color="secondary" value={formDataContent.locale} focused
+        <TextField label="Cidade*" color="primary" value={formDataContent.locale} focused
           onChange={e => setFormDataContent({ ...formDataContent, locale: e.target.value })}
         />
-        <TextField label="Estado*" color="secondary" value={formDataContent.uf} focused
+        <TextField label="Estado*" color="primary" value={formDataContent.uf} focused
           onChange={e => setFormDataContent({ ...formDataContent, uf: e.target.value })}
         />
       </form>
-      <Button onClick={proSubmit} variant="contained" color="secondary" type="submit">Cadastrar Profissional</Button>
+      { isLoaded ? (
+        <Button onClick={proSubmit} variant="contained" color="primary" type="submit" disabled>
+          <CircularProgress size="20px" />
+        </Button>
+      ) : (
+        <Button onClick={proSubmit} variant="contained" color="primary" type="submit">Cadastrar Paciente</Button>
+      )}
     </FormAddProContent >
   );
 }

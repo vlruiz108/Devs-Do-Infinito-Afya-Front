@@ -5,15 +5,15 @@ import { ptBR } from '@material-ui/data-grid';
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      light: '#FFF',
-      main: '#EDF6FF',
-      contrastText: '#000',
-    },
-    secondary: {
       light: '#ff7961',
       main: '#7C0000',
       dark: '#ba000d',
       contrastText: '#EDF6FF',
+    },
+    secondary: {
+      light: '#FFF',
+      main: '#EDF6FF',
+      contrastText: '#000',
     },
   },
 }, ptBR);

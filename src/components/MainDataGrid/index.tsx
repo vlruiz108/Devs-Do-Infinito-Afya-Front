@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { GridContent } from './styles';
 
 import { DataGrid } from '@material-ui/data-grid';
-import { columns, IRawRow, IRow } from '../../assets/DataGridConfig'
+import { columns, IRow } from '../../assets/DataGridConfig'
 
 import { api } from '../../service/api';
 
@@ -19,31 +19,33 @@ const MainDataGrid: React.FC = () => {
       }
     }).then(
       response => {
-        // let datas = response.data
-        setRowA(response.data)
-        // datas.map((data: any, i: any) => {
-        //   console.log(data.id_attendance)
-        // })
-        // for (let i = 0; i < datas.length; i++) {
-        //   rowA[i].id = datas[i].id_attendance
-        //   console.log(rowA[i])
-        // }
+        const datas = response.data
+        for (let i = 0; i < datas.length; i++) {
+          datas[i].attendance_date = new Date(datas[i].attendance_date).toLocaleDateString('pt-br')
+          datas[i].couple_id = (datas[i].id) % 2
+        }
+        setRowA(datas)
+        setRowB(datas)
       }
     ).catch(err => { console.log(err) }).finally(() => { })
-  }, [rowA])
+  }, [])
 
   return (
     <GridContent>
       <section className="main-item">
         <h2>Agendamentos do dia</h2>
         <div>
-          <DataGrid className="grid" rows={rowA} columns={columns} pageSize={12} checkboxSelection />
+          <DataGrid className="grid" rows={rowA} columns={columns} pageSize={14} checkboxSelection
+            getRowClassName={(params) => `value-${params?.getValue(params.id, 'couple_id')}`}
+          />
         </div>
       </section>
       <section className="co-item">
         <h2>Próximos agendamentos</h2>
         <div>
-          <DataGrid className="grid" rows={rowB} columns={columns} pageSize={12} checkboxSelection />
+          <DataGrid className="grid" rows={rowB} columns={columns} pageSize={14} checkboxSelection
+            getRowClassName={(params) => `value-${params.getValue(params.id, 'couple_id')}`}
+          />
         </div>
       </section>
     </GridContent>

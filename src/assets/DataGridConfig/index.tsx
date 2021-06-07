@@ -1,4 +1,4 @@
-import { GridCellParams, GridColDef } from '@material-ui/data-grid';
+import { GridColDef } from '@material-ui/data-grid';
 
 export interface IRawRow {
   id_attendance: number | undefined,
@@ -26,14 +26,22 @@ export interface IRow {
   attendance_date: string,
   specialist_name: string,
   email: string,
+  couple_id: number | undefined,
 }
 
+export interface IMainRow {
+  id: number | undefined,
+  attendance_date: string,
+  specialist_name: string,
+  email: string,
+  couple_id: number | undefined,
+}
 
 export const columns: GridColDef[] = [
   {
     field: 'attendance_date',
     headerName: 'Data',
-    flex: 2
+    flex: 1.3
   },
   {
     field: 'specialist_name',

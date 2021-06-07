@@ -1,5 +1,5 @@
 export interface IPatientId {
-  client_name: string;
+  name: string;
   cpf: string;
   phone?: string;
   cellphone?: string;
@@ -14,7 +14,7 @@ export interface IPatientId {
 }
 
 export interface IProId {
-  client_name: string;
+  name: string;
   cpf: string;
   phone?: string;
   cellphone?: string;

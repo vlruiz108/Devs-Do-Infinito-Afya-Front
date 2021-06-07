@@ -5,9 +5,11 @@ import DropDownMenu from '../DropDownMenu';
 
 import Logo from '../../assets/img/AGMed1.png'
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { ExitToApp } from '@material-ui/icons';
+
+import IconButton from '@material-ui/core/IconButton';
 
 export const items = [
   { name: 'Home', path: '/home' },
@@ -38,11 +40,14 @@ const MainNavBar: React.FC = () => {
       <div id="navbar">
         {items.map((item, i) => {
           return path === item.path ?
-            <Button key={i} onClick={handleClick} name={item.path} variant="contained" color="primary" disableElevation disabled>{item.name}</Button>
+            <Button key={i} onClick={handleClick} name={item.path} variant="contained" color="secondary" disableElevation disabled>{item.name}</Button>
             :
-            <Button key={i} onClick={handleClick} name={item.path} variant="contained" color="primary" disableElevation>{item.name}</Button>
-        }
-        )}
+            <Button key={i} onClick={handleClick} name={item.path} variant="contained" color="secondary" disableElevation>{item.name}</Button>
+        })}
+        <Button onClick={() => {
+          localStorage.removeItem('@TokenAGMed')
+          history.push('/')
+        }} variant="contained" color="secondary" startIcon={<ExitToApp />} disableElevation>Sair</Button>
       </div>
       <DropDownMenu />
     </NavbarContent >
