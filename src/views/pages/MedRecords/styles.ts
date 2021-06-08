@@ -21,6 +21,9 @@ export const MedRecordContent = styled.div`
   }  
 
   & .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     border-radius: 5px;
     width: 80%;
     background-color: #EDF6FF;

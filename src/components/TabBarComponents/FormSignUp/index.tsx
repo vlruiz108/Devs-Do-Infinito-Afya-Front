@@ -43,7 +43,7 @@ const FormSignUp: React.FC = () => {
       }).finally(() => {
         setIsRegistered(false)
       })
-    }, [formDataContent])
+    }, [formDataContent, history])
 
   return (
     <FormSignUpContent>
@@ -52,13 +52,13 @@ const FormSignUp: React.FC = () => {
           <AddCircle />
         </div>
         <h2>Cadastre-se</h2>
-        <TextField id="email-register" label="Email*" type="email" variant="outlined" size="small" color="primary"
+        <TextField id="email-register" label="Email*" type="email" variant="outlined" size="small" color="primary" required
           onChange={e => setFormDataContent({ ...formDataContent, user_email: e.target.value })}
         />
-        <TextField id="name-register" label="Nome*" type="text" variant="outlined" size="small" color="primary"
+        <TextField id="name-register" label="Nome*" type="text" variant="outlined" size="small" color="primary" required
           onChange={e => setFormDataContent({ ...formDataContent, user_name: e.target.value })}
         />
-        <TextField id="password-register" label="Senha*" type="password" variant="outlined" size="small" color="primary"
+        <TextField id="password-register" label="Senha*" type="password" variant="outlined" size="small" color="primary" required
           onChange={e => setFormDataContent({ ...formDataContent, password: e.target.value })}
         />
         {isRegistered ? (

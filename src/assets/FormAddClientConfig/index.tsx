@@ -14,22 +14,32 @@ export interface IPatientId {
 }
 
 export interface IProId {
-  name: string;
+  specialist_name: string;
   cpf: string;
   phone?: string;
   cellphone?: string;
   email: string;
-  pro_type: string | unknown;
-  zip_code: string;
+  id_profession: number | unknown;
+  zip_code: number;
   street: string;
   number: string;
   district: string;
   locale: string;
   uf: string;
+  register: string;
 }
 
-export interface IPros {
-  [index: string]: { id: number; name: string | readonly string[] };
+
+export interface IProfession {
+  id: number; profession_name: string
+}
+
+export interface IProfessional {
+  id: number; name: string | readonly string[]
+}
+
+export interface IPatient {
+  id: number; name: string | readonly string[]
 }
 
 export interface IZipContent {

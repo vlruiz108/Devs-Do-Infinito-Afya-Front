@@ -3,6 +3,7 @@ import React from 'react';
 import { MedRecordContent } from './styles';
 
 import MainNavBar from '../../../components/MainNavBar';
+import FormMedRecords from '../../../components/FormMedRecords';
 
 const MedRecords: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const MedRecords: React.FC = () => {
         <div className="container">
           <MainNavBar />
           <div className="content">
-            teste
+            <FormMedRecords />
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ const DropDownMenu: React.FC = () => {
         <span></span>
         <nav>
           {items.map((item, i) => {
-            return path !== item.path && <Link to={item.path}>{item.name}</Link>
+            return path !== item.path && <Link key={i} to={item.path}>{item.name}</Link>
           })}
         </nav>
       </label>
