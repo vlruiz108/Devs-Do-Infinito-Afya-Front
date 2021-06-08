@@ -13,7 +13,7 @@ export const FormAddSchedulesContent = styled.div`
   height: 50px;
   border-radius: 5px;
   color: white;
-  padding:10px;
+  padding: 30px 10px 10px 10px;
   }
 
   & form{
@@ -34,6 +34,10 @@ export const FormAddSchedulesContent = styled.div`
       padding: 60px 30px 0 30px;
       background: #fff;
 
+      & .MuiAutocomplete-root{
+          width: 48%;
+        }
+
       & .row2{
         width: 30%;
       }
@@ -44,6 +48,31 @@ export const FormAddSchedulesContent = styled.div`
 
     }
       
+  }
+
+  @media(max-width: 960px){
+    margin-top: 5px;
+    width: 100%;
+    height: 100%;
+
+    & form{
+      height:90%;
+
+      & #box{
+        display: block;
+        height: 500px;
+
+        & .MuiFormControl-root{
+          width: 100%;
+          margin: 15px 0;
+        }
+
+        & .MuiAutocomplete-root{
+          width: 100%;
+          margin: 15px 0;
+        }
+      }
+    }
   }
 
   

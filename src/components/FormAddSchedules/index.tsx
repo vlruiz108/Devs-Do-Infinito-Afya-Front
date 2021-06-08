@@ -74,10 +74,7 @@ const FormAddSchedules: React.FC = () => {
             id="Patient-select"
             options={countries}
             autoHighlight
-            style={{
-              height: 55,
-              width: '43%'
-            }}
+            style={{ height: 55 }}
             onChange={(e, value) => console.log(value?.label)}
             getOptionLabel={(option) => option.label}
             renderInput={(params) => <TextField {...params} label="Selecione o paciente" variant="outlined" required />}
@@ -86,10 +83,7 @@ const FormAddSchedules: React.FC = () => {
             id="Pro-select"
             options={countries}
             autoHighlight
-            style={{
-              height: 55,
-              width: '43%'
-            }}
+            style={{ height: 55 }}
             onChange={(e, value) => console.log(value?.label)}
             getOptionLabel={(option) => option.label}
             renderInput={(params) => <TextField {...params} label="Selecione o Especialista" variant="outlined" required />}
@@ -98,7 +92,7 @@ const FormAddSchedules: React.FC = () => {
             id="date"
             label="Data"
             type="date"
-            defaultValue="2017-05-24"
+            defaultValue="2021-06-14"
             className="row2"
             variant="outlined"
             required
@@ -110,7 +104,7 @@ const FormAddSchedules: React.FC = () => {
             id="time"
             label="Horário"
             type="time"
-            defaultValue="07:30"
+            defaultValue="12:30"
             className="row2"
             variant="outlined"
             required
