@@ -31,15 +31,20 @@ export interface IProId {
 
 
 export interface IProfession {
-  id: number; profession_name: string
+  id: number,
+  profession_name: string,
 }
 
 export interface IProfessional {
-  id: number; specialist_name: string,
+  id: number,
+  id_specialist: string,
+  specialist_name: string,
 }
 
 export interface IPatient {
-  id: number; client_name: string,
+  id: number,
+  id_med_reg: string,
+  client_name: string,
 }
 
 export interface IZipContent {

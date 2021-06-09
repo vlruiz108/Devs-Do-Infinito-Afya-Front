@@ -42,10 +42,7 @@ const MainNavBar: React.FC = () => {
             :
             <Button key={i} onClick={handleClick} name={item.path} variant="contained" color="secondary" disableElevation>{item.name}</Button>
         })}
-        <Button onClick={() => {
-          localStorage.removeItem('@TokenAGMed')
-          history.push('/')
-        }} variant="contained" color="secondary" startIcon={<ExitToApp />} disableElevation>Sair</Button>
+        <Button onClick={() => history.push('/')} variant="contained" color="secondary" startIcon={<ExitToApp />} disableElevation>Sair</Button>
       </div>
       <DropDownMenu />
     </NavbarContent >

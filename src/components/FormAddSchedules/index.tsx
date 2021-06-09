@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { IProfessional, IPatient } from '../../assets/FormAddClientConfig';
 import {
   Button,
+  CircularProgress,
   FormControl,
   InputAdornment,
   InputLabel,
@@ -14,35 +15,25 @@ import { api } from '../../service/api';
 
 import { FormAddSchedulesContent } from './styles';
 import { Autocomplete } from '@material-ui/lab';
+import { toast } from 'react-toastify';
 
-const countries = [
-  { code: 'AD', label: 'Andorra', phone: '376' },
-  { code: 'AE', label: 'United Arab Emirates', phone: '971' },
-  { code: 'AF', label: 'Afghanistan', phone: '93' },
-  { code: 'AG', label: 'Antigua and Barbuda', phone: '1-268' },
-  { code: 'AI', label: 'Anguilla', phone: '1-264' },
-  { code: 'AL', label: 'Albania', phone: '355' },
-  { code: 'AM', label: 'Armenia', phone: '374' },
-  { code: 'AO', label: 'Angola', phone: '244' },
-  { code: 'VG', label: 'British Virgin Islands', phone: '1-284' },
-  { code: 'VI', label: 'US Virgin Islands', phone: '1-340' },
-  { code: 'VN', label: 'Vietnam', phone: '84' },
-  { code: 'VU', label: 'Vanuatu', phone: '678' },
-  { code: 'WF', label: 'Wallis and Futuna', phone: '681' },
-  { code: 'WS', label: 'Samoa', phone: '685' },
-  { code: 'XK', label: 'Kosovo', phone: '383' },
-  { code: 'YE', label: 'Yemen', phone: '967' },
-  { code: 'YT', label: 'Mayotte', phone: '262' },
-  { code: 'ZA', label: 'South Africa', phone: '27' },
-  { code: 'ZM', label: 'Zambia', phone: '260' },
-  { code: 'ZW', label: 'Zimbabwe', phone: '263' },
-];
+interface ISchedule {
+  attendance_date: string;
+  attendance_time: string;
+  attendance_value: string;
+  FK_id_med_reg: string | undefined;
+  FK_id_specialist: string | undefined;
+}
 
 const FormAddSchedules: React.FC = () => {
+
+  const [formSchedule, setFormSchedule] = useState<ISchedule>({} as ISchedule)
 
   const [professionals, setProfessionals] = useState<IProfessional[]>([])
 
   const [patients, setPatients] = useState<IPatient[]>([])
+
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     api.get('specialist', {
@@ -65,6 +56,24 @@ const FormAddSchedules: React.FC = () => {
     ).catch(err => console.error(err))
   }, [])
 
+  const ScheduleSubmit = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      setIsLoaded(true)
+      api.post('attendance', formSchedule, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
+        }
+      }).then(
+        response => {
+          toast.success('Sucesso no cadastro!')
+          console.log(formSchedule)
+        }
+      ).catch(err => toast.error('Ooops algo deu errado, tente novamente mais tarde')).finally(() => {
+        setIsLoaded(false)
+      })
+    }, [formSchedule])
+
   return (
     <FormAddSchedulesContent>
       <h2>Agendar Consulta</h2>
@@ -72,20 +81,20 @@ const FormAddSchedules: React.FC = () => {
         <div id="box">
           <Autocomplete
             id="Patient-select"
-            options={professionals}
+            options={patients}
             autoHighlight
             style={{ height: 55 }}
-            onChange={(e, value) => console.log(value?.id)}
-            getOptionLabel={(option) => option.specialist_name}
+            onChange={(e, value) => setFormSchedule({ ...formSchedule, FK_id_med_reg: value?.id_med_reg })}
+            getOptionLabel={(option) => option.client_name}
             renderInput={(params) => <TextField {...params} label="Selecione o paciente" variant="outlined" required />}
           />
           <Autocomplete
             id="Pro-select"
-            options={patients}
+            options={professionals}
             autoHighlight
             style={{ height: 55 }}
-            onChange={(e, value) => console.log(value?.id)}
-            getOptionLabel={(option) => option.client_name}
+            onChange={(e, value) => setFormSchedule({ ...formSchedule, FK_id_specialist: value?.id_specialist })}
+            getOptionLabel={(option) => option.specialist_name}
             renderInput={(params) => <TextField {...params} label="Selecione o Especialista" variant="outlined" required />}
           />
           <TextField
@@ -95,6 +104,7 @@ const FormAddSchedules: React.FC = () => {
             defaultValue="2021-06-14"
             className="row2"
             variant="outlined"
+            onChange={e => setFormSchedule({ ...formSchedule, attendance_date: e.target.value })}
             required
             InputLabelProps={{
               shrink: true,
@@ -107,12 +117,13 @@ const FormAddSchedules: React.FC = () => {
             defaultValue="12:30"
             className="row2"
             variant="outlined"
+            onChange={e => setFormSchedule({ ...formSchedule, attendance_time: e.target.value })}
             required
             InputLabelProps={{
               shrink: true,
             }}
             inputProps={{
-              step: 300, // 5 min
+              step: 300,
             }}
           />
           <FormControl variant="outlined" className="row2" required>
@@ -120,6 +131,7 @@ const FormAddSchedules: React.FC = () => {
             <OutlinedInput
               type="number"
               id="outlined-adornment-amount"
+              onChange={e => setFormSchedule({ ...formSchedule, attendance_value: e.target.value })}
               style={{ width: '100%' }}
               inputProps={{ min: 0 }}
               startAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -127,7 +139,13 @@ const FormAddSchedules: React.FC = () => {
             />
           </FormControl>
           <div className="row3">
-            <Button variant="contained" style={{ height: 55 }} color="primary" type="submit">Cadastrar Paciente</Button>
+            {isLoaded ? (
+              <Button variant="contained" style={{ height: 55 }} color="primary" >
+                <CircularProgress size="20px" />
+              </Button>
+            ) : (
+              <Button onClick={ScheduleSubmit} variant="contained" style={{ height: 55 }} color="primary" type="submit">Cadastrar Paciente</Button>
+            )}
           </div>
         </div>
       </form>
