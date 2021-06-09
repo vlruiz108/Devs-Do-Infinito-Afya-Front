@@ -100,7 +100,7 @@ const FormAddPatient: React.FC = () => {
             onChange={e => setZipContent({ ...ZipContent, cep: e.target.value })}
           />
           {isLoaded ? (
-            <Button id="check-address" onClick={handleZip} variant="contained" color="primary" disableElevation disabled>Verificar</Button>
+            <Button id="check-address" variant="contained" color="primary" disableElevation disabled>Verificar</Button>
           ) : (
             <Button id="check-address" onClick={handleZip} variant="contained" color="primary" disableElevation>Verificar</Button>
           )}
@@ -122,11 +122,11 @@ const FormAddPatient: React.FC = () => {
         />
       </form>
       { isLoaded ? (
-        <Button onClick={patientSubmit} variant="contained" color="primary" type="submit" disabled>
+        <Button variant="contained" color="primary" disabled>
           <CircularProgress size="20px" />
         </Button>
       ) : (
-        <Button onClick={patientSubmit} variant="contained" color="primary" type="submit">Cadastrar Paciente</Button>
+        <Button onClick={patientSubmit} variant="contained" color="primary">Cadastrar Paciente</Button>
       )}
     </FormAddPatientContent>
   );

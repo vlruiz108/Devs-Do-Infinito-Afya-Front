@@ -35,11 +35,11 @@ export interface IProfession {
 }
 
 export interface IProfessional {
-  id: number; name: string | readonly string[]
+  id: number; specialist_name: string,
 }
 
 export interface IPatient {
-  id: number; name: string | readonly string[]
+  id: number; client_name: string,
 }
 
 export interface IZipContent {

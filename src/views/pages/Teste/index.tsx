@@ -1,6 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import React from 'react';
-import ListPro from '../../../components/ListPro';
 
 const Teste: React.FC = () => {
   return (
@@ -14,7 +13,6 @@ const Teste: React.FC = () => {
           <MenuItem value='null'>
             <em>Escolha a profissão</em>
           </MenuItem>
-          <ListPro />
         </Select>
       </FormControl>
     </div>

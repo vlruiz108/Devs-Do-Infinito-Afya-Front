@@ -17,6 +17,10 @@ export const GridContent = styled.div`
     height: 790px;
   }
 
+  & .value-1{
+    background-color: #EDF6FF;
+  }
+
   @media(max-width: 960px){
     display: block;
     

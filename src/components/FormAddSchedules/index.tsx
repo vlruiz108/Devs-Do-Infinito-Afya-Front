@@ -54,7 +54,7 @@ const FormAddSchedules: React.FC = () => {
         setProfessionals(response.data)
       }
     ).catch(err => console.error(err))
-    api.get('specialist', {
+    api.get('client', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
       }
@@ -72,20 +72,20 @@ const FormAddSchedules: React.FC = () => {
         <div id="box">
           <Autocomplete
             id="Patient-select"
-            options={countries}
+            options={professionals}
             autoHighlight
             style={{ height: 55 }}
-            onChange={(e, value) => console.log(value?.label)}
-            getOptionLabel={(option) => option.label}
+            onChange={(e, value) => console.log(value?.id)}
+            getOptionLabel={(option) => option.specialist_name}
             renderInput={(params) => <TextField {...params} label="Selecione o paciente" variant="outlined" required />}
           />
           <Autocomplete
             id="Pro-select"
-            options={countries}
+            options={patients}
             autoHighlight
             style={{ height: 55 }}
-            onChange={(e, value) => console.log(value?.label)}
-            getOptionLabel={(option) => option.label}
+            onChange={(e, value) => console.log(value?.id)}
+            getOptionLabel={(option) => option.client_name}
             renderInput={(params) => <TextField {...params} label="Selecione o Especialista" variant="outlined" required />}
           />
           <TextField
