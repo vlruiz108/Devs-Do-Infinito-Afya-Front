@@ -33,6 +33,18 @@ export const GridContent = styled.div`
     background-color: #EDF6FF;
   }
 
+  & .done{
+    background-color: #0AF060;
+  }
+
+  & .canceled{
+    background-color: #EB1340;
+  }
+
+  & .scheduled{
+    background-color: #0767DE;
+  }
+
   @media(max-width: 960px){
     display: block;
     

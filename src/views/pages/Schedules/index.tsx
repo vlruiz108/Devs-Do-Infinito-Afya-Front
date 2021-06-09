@@ -2,12 +2,8 @@ import React from 'react';
 
 import { ScheduleContent } from './styles';
 
-import FormAddPro from '../../../components/TabBarComponents/FormAddPro';
-
 import MainNavBar from '../../../components/MainNavBar';
-import TabBar from '../../../components/TabBar';
-
-import { AssignmentInd, PersonAdd } from '@material-ui/icons';
+import FormAddSchedules from '../../../components/FormAddSchedules';
 
 const Schedules: React.FC = () => {
   return (
@@ -16,14 +12,7 @@ const Schedules: React.FC = () => {
         <div className="container">
           <MainNavBar />
           <div className="content">
-            <TabBar
-              FIcon={<AssignmentInd />}
-              SIcon={<PersonAdd />}
-              FLabel="Todos Agendamentos"
-              SLabel="Cadastrar Agendamento"
-              FContent={FormAddPro}
-              SContent={FormAddPro}
-            />
+            <FormAddSchedules />
           </div>
         </div>
       </div>

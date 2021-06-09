@@ -9,8 +9,6 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { ExitToApp } from '@material-ui/icons';
 
-import IconButton from '@material-ui/core/IconButton';
-
 export const items = [
   { name: 'Home', path: '/home' },
   { name: 'Agendamentos', path: '/schedule' },

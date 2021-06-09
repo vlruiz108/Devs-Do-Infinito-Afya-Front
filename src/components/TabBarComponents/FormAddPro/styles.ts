@@ -20,6 +20,12 @@ padding: 30px;
     & *{
       margin: 7px 0px;
     }
+
+    & #phone-box{
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
   
     & #check-address{
       margin: 10px 0 0 40px;

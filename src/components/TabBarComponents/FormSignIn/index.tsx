@@ -42,7 +42,7 @@ const FormSignIn: React.FC = () => {
       }).finally(() => {
         setIsLogged(false)
       })
-    }, [formDataContent])
+    }, [formDataContent, history])
 
   const handleReset = (MouseEventHandler: FormEvent<HTMLAnchorElement>) => {
     toast.info('Nova senha enviada por email')
@@ -55,10 +55,10 @@ const FormSignIn: React.FC = () => {
           <LockIcon />
         </div>
         <h2>Faça o Login</h2>
-        <TextField id="email-login" label="Email" type="text" variant="outlined" size="small" color="primary"
+        <TextField id="email-login" label="Email" type="text" variant="outlined" size="small" color="primary" required
           onChange={e => setFormDataContent({ ...formDataContent, user_email: e.target.value })}
         />
-        <TextField id="password-login" label="Senha" type="password" variant="outlined" size="small" color="primary"
+        <TextField id="password-login" label="Senha" type="password" variant="outlined" size="small" color="primary" required
           onChange={e => setFormDataContent({ ...formDataContent, password: e.target.value })}
         />
         {isLogged ? (

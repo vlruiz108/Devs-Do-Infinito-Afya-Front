@@ -35,6 +35,7 @@ export const CPFInput: React.FC<{
       color={props.color}
       onChange={props.onChange}
       name="textmask"
+      required
       InputProps={{
         inputComponent: TextMaskCPF as any,
       }}
@@ -70,6 +71,7 @@ export const PhoneInput: React.FC<{
       color={props.color}
       onChange={props.onChange}
       name="textmask"
+      required
       InputProps={{
         inputComponent: TextMaskPhone as any,
       }}
@@ -105,6 +107,7 @@ export const ZipInput: React.FC<{
       color={props.color}
       onChange={props.onChange}
       name="textmask"
+      required
       InputProps={{
         inputComponent: TextMaskZip as any,
       }}
