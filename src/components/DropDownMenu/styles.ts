@@ -57,7 +57,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: right;
     width: 100%;
-    height: 200px;
+    height: 400px;
     background-color: rgba(80,80,80,0.9);
     color: white;
     position: absolute;

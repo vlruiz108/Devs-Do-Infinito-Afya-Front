@@ -8,19 +8,19 @@ export interface IRawRow {
   attendance_date: string,
   attendance_value: string,
   attendance_status: string,
-  FK_id_med_reg: number,
-  FK_id_specialist: number,
-  id_med_reg: number,
+  FK_id_med_reg: string,
+  FK_id_specialist: string,
+  id_med_reg: string,
   med_reg_date: string,
-  FK_id_client: number,
-  id_specialist: number,
+  FK_id_client: string,
+  id_specialist: string,
   register: string,
   specialist_name: string,
   phone: string,
   cellphone: string,
   email: string,
-  FK_id_address: number,
-  FK_id_profession: number
+  FK_id_address: string,
+  FK_id_profession: string
 }
 
 export interface IMainRow {
@@ -48,6 +48,7 @@ export interface IPatientRow {
   cellphone: string,
   client_name: string,
   email: string,
+  id_med_reg: string,
   couple_id: number | undefined,
 }
 
