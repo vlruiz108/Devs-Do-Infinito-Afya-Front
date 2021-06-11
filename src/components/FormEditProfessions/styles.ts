@@ -18,7 +18,7 @@ export const FormEditProfessionContent = styled.form`
       grid-gap: 20px;
       margin: 30px 0;
 
-      & button{
+      & .btn{
         margin: 0 auto;
         width: 60%;
       }

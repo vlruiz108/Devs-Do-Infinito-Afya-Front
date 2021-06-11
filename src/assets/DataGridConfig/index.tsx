@@ -52,7 +52,58 @@ export interface IPatientRow {
   couple_id: number | undefined,
 }
 
-export const columns: GridColDef[] = [
+export const columnsMain: GridColDef[] = [
+  {
+    field: 'client_name',
+    headerName: 'Paciente',
+    headerAlign: 'left',
+    flex: 1.6
+  },
+  {
+    field: 'specialist_name',
+    headerName: 'Profissional',
+    headerAlign: 'left',
+    flex: 1.6
+  },
+  {
+    field: 'attendance_value',
+    headerName: 'Valor',
+    headerAlign: 'left',
+    flex: 1.2
+  },
+  {
+    field: 'attendance_status',
+    headerName: 'Status',
+    flex: 1.5,
+    renderCell: (params: GridCellParams) => (
+      <strong>
+        {params.value === "Realizado" &&
+          <Button
+            variant="contained"
+            className="done"
+            startIcon={<Check />}
+          >Realizado</Button>
+        }
+        {params.value === "Cancelado" &&
+          <Button
+            variant="contained"
+            className="canceled"
+            startIcon={<Close />}
+          >Cancelado</Button>
+        }
+        {params.value === "Agendado" &&
+          <Button
+            variant="contained"
+            className="scheduled"
+            startIcon={<Reorder />}
+          >Agendado</Button>
+        }
+      </strong>
+    ),
+  }
+];
+
+export const columnsCo: GridColDef[] = [
   {
     field: 'attendance_date',
     headerName: 'Data',
@@ -81,26 +132,26 @@ export const columns: GridColDef[] = [
     flex: 1.5,
     renderCell: (params: GridCellParams) => (
       <strong>
-        {params.value === "1" &&
+        {params.value === "Realizado" &&
           <Button
             variant="contained"
             className="done"
             startIcon={<Check />}
-          >Status 1</Button>
+          >Realizado</Button>
         }
-        {params.value === "2" &&
+        {params.value === "Cancelado" &&
           <Button
             variant="contained"
             className="canceled"
             startIcon={<Close />}
-          >Status 2</Button>
+          >Cancelado</Button>
         }
-        {params.value === "3" &&
+        {params.value === "Agendado" &&
           <Button
             variant="contained"
             className="scheduled"
             startIcon={<Reorder />}
-          >Status 3</Button>
+          >Agendado</Button>
         }
       </strong>
     ),

@@ -67,7 +67,6 @@ const FormAddSchedules: React.FC = () => {
       }).then(
         response => {
           toast.success('Sucesso no cadastro!')
-          console.log(formSchedule)
         }
       ).catch(err => toast.error('Ooops algo deu errado, tente novamente mais tarde')).finally(() => {
         setIsLoaded(false)
@@ -84,7 +83,7 @@ const FormAddSchedules: React.FC = () => {
             options={patients}
             autoHighlight
             style={{ height: 55 }}
-            onChange={(e, value) => setFormSchedule({ ...formSchedule, FK_id_med_reg: value?.id_med_reg })}
+            onChange={(e, value) => setFormSchedule({ ...formSchedule, FK_id_med_reg: value?.id })}
             getOptionLabel={(option) => option.client_name}
             renderInput={(params) => <TextField {...params} label="Selecione o paciente" variant="outlined" required />}
           />
@@ -93,7 +92,7 @@ const FormAddSchedules: React.FC = () => {
             options={professionals}
             autoHighlight
             style={{ height: 55 }}
-            onChange={(e, value) => setFormSchedule({ ...formSchedule, FK_id_specialist: value?.id_specialist })}
+            onChange={(e, value) => setFormSchedule({ ...formSchedule, FK_id_specialist: value?.id })}
             getOptionLabel={(option) => option.specialist_name}
             renderInput={(params) => <TextField {...params} label="Selecione o Especialista" variant="outlined" required />}
           />
@@ -140,11 +139,11 @@ const FormAddSchedules: React.FC = () => {
           </FormControl>
           <div className="row3">
             {isLoaded ? (
-              <Button variant="contained" style={{ height: 55 }} color="primary" >
+              <Button variant="contained" style={{ height: 55, width: 300 }} color="primary">
                 <CircularProgress size="20px" />
               </Button>
             ) : (
-              <Button onClick={ScheduleSubmit} variant="contained" style={{ height: 55 }} color="primary" type="submit">Cadastrar Paciente</Button>
+              <Button onClick={ScheduleSubmit} variant="contained" style={{ height: 55, width: 300 }} color="primary" type="submit">Cadastrar Paciente</Button>
             )}
           </div>
         </div>

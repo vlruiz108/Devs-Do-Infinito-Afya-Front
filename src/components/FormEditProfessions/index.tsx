@@ -14,6 +14,7 @@ import {
 
 import { api } from '../../service/api';
 import { IProfession } from '../../assets/FormAddClientConfig';
+import { Autocomplete } from '@material-ui/lab';
 
 interface IProForm {
   profession_name: string;
@@ -45,7 +46,7 @@ const FormEditProfessions: React.FC = () => {
     ).catch(err => {
       console.error(err)
     })
-  }, [])
+  }, [profession])
 
   const ProfessionNewSubmit = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -62,7 +63,7 @@ const FormEditProfessions: React.FC = () => {
       ).catch(err => console.log('Ooops, algo deu errado')).finally(() => {
         setIsLoaded(false)
       })
-    }, [professionName])
+    }, [professionName, profession])
 
 
   const ProfessionEditSubmit = useCallback(
@@ -80,7 +81,7 @@ const FormEditProfessions: React.FC = () => {
       ).catch(err => console.log('Ooops, algo deu errado')).finally(() => {
         setIsLoaded(false)
       })
-    }, [formPro])
+    }, [formPro, profession])
 
   return (
     <FormEditProfessionContent>
@@ -89,17 +90,26 @@ const FormEditProfessions: React.FC = () => {
           onChange={e => setProfessionName({ profession_name: e.target.value })}
         />
         {isLoaded ? (
-          <Button variant="contained" color="primary" disabled>
+          <Button className="btn" variant="contained" color="primary" disabled>
             <CircularProgress size="20px" />
           </Button>
         ) : (
-          <Button variant="contained" color="primary" onClick={ProfessionNewSubmit}>
+          <Button className="btn" variant="contained" color="primary" onClick={ProfessionNewSubmit}>
             Cadastrar nova profissão
           </Button>
         )}
       </section>
       <section>
-        <FormControl color="primary" >
+        <Autocomplete
+          id="Patient-select"
+          options={profession}
+          autoHighlight
+          style={{ height: 55 }}
+          onChange={(e, value) => setFormPro({ ...formPro, id_profession: value?.id })}
+          getOptionLabel={(option) => option.profession_name}
+          renderInput={(params) => <TextField {...params} label="Selecione o paciente" variant="outlined" required />}
+        />
+        {/* <FormControl color="primary" >
           <InputLabel id="profession" >Profissão*</InputLabel>
           <Select
             labelId="profession"
@@ -113,18 +123,16 @@ const FormEditProfessions: React.FC = () => {
             </MenuItem>
             {profession.map((pro, i) => <MenuItem key={i} value={pro?.id}>{pro?.profession_name}</MenuItem>)}
           </Select>
-        </FormControl>
+        </FormControl> */}
         <TextField label="Definir profissão" color="primary" variant="outlined" required
           onChange={e => setFormPro({ ...formPro, profession_name: e.target.value })}
         />
-        <Button variant="contained" color="primary" onClick={ProfessionEditSubmit}
-        >Editar profissão</Button>
         {isLoaded ? (
-          <Button variant="contained" color="primary" disabled>
+          <Button className="btn" variant="contained" color="primary" disabled>
             <CircularProgress size="20px" />
           </Button>
         ) : (
-          <Button variant="contained" color="primary" onClick={ProfessionEditSubmit}>
+          <Button className="btn" variant="contained" color="primary" onClick={ProfessionEditSubmit}>
             Editar profissão
           </Button>
         )}

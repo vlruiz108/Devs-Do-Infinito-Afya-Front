@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { GridContent } from './styles';
 
 import { DataGrid } from '@material-ui/data-grid';
-import { columns, IMainRow } from '../../assets/DataGridConfig'
+import { columnsMain, columnsCo, IMainRow } from '../../assets/DataGridConfig'
 
 import { api } from '../../service/api';
 
@@ -18,9 +18,8 @@ const MainDataGrid: React.FC = () => {
   useEffect(() => {
     const today = new Date();
     const now = [today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0'), String(today.getDate()).padStart(2, '0')].join('-')
-    const tomorrow = [today.getFullYear(), String(today.getMonth() + 1).padStart(2, '0'), String(today.getDate() + 1).padStart(2, '0')].join('-')
     setIsLoadedMain(true)
-    api.get(`/reports/attendanceForPeriod/?initial_date=${now}&final_date=${tomorrow}`, {
+    api.get(`reports/attendanceDate/${now}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
       }
@@ -28,7 +27,8 @@ const MainDataGrid: React.FC = () => {
       response => {
         const datas = response.data
         for (let i = 0; i < datas.length; i++) {
-          datas[i].couple_id = (datas[i].id) % 2
+          datas[i].id = datas[i].id_attendance
+          datas[i].couple_id = (datas[i].id_attendance) % 2
         }
         setRowA(datas)
       }
@@ -42,6 +42,7 @@ const MainDataGrid: React.FC = () => {
       }
     }).then(
       response => {
+        console.log(response.data)
         const datas = response.data
         for (let i = 0; i < datas.length; i++) {
           datas[i].attendance_date = new Date(datas[i].attendance_date).toLocaleDateString('pt-br')
@@ -60,11 +61,9 @@ const MainDataGrid: React.FC = () => {
         <h2>Agendamentos do dia</h2>
         <div>
           {isLoadedMain ? (
-            <DataGrid className="grid" rows={rowA} columns={columns} pageSize={14} checkboxSelection loading
-              getRowClassName={(params) => `value-${params?.getValue(params.id, 'couple_id')}`}
-            />
+            <DataGrid className="grid" rows={rowA} columns={columnsMain} checkboxSelection loading />
           ) : (
-            <DataGrid className="grid" rows={rowA} columns={columns} pageSize={14} checkboxSelection
+            <DataGrid className="grid" rows={rowA} columns={columnsMain} pageSize={14} checkboxSelection
               getRowClassName={(params) => `value-${params?.getValue(params.id, 'couple_id')}`}
             />
           )}
@@ -74,11 +73,9 @@ const MainDataGrid: React.FC = () => {
         <h2>Próximos agendamentos</h2>
         <div>
           {isLoadedCo ? (
-            <DataGrid className="grid" rows={rowB} columns={columns} pageSize={14} checkboxSelection loading
-              getRowClassName={(params) => `value-${params.getValue(params.id, 'couple_id')}`}
-            />
+            <DataGrid className="grid" rows={rowB} columns={columnsCo} checkboxSelection loading />
           ) : (
-            <DataGrid className="grid" rows={rowB} columns={columns} pageSize={14} checkboxSelection
+            <DataGrid className="grid" rows={rowB} columns={columnsCo} pageSize={14} checkboxSelection
               getRowClassName={(params) => `value-${params.getValue(params.id, 'couple_id')}`}
             />
           )}

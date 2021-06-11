@@ -21,7 +21,6 @@ const PatientDataGrid: React.FC = () => {
       }
     }).then(
       response => {
-        console.log(response.data)
         const datas = response.data
         for (let i = 0; i < datas.length; i++) {
           datas[i].cpf = `${datas[i].cpf.substr(0, 3)}.${datas[i].cpf.substr(3, 3)}.${datas[i].cpf.substr(6, 2)}-${datas[i].cpf.substr(8, 3)}`;

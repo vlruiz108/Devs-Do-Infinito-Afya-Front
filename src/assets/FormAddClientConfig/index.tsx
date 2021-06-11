@@ -20,7 +20,7 @@ export interface IProId {
   cellphone?: string;
   email: string;
   id_profession: number | unknown;
-  zip_code: number;
+  zip_code: string;
   street: string;
   number: string;
   district: string;
@@ -36,14 +36,12 @@ export interface IProfession {
 }
 
 export interface IProfessional {
-  id: number,
-  id_specialist: string,
+  id: string,
   specialist_name: string,
 }
 
 export interface IPatient {
-  id: number,
-  id_med_reg: string,
+  id: string,
   client_name: string,
 }
 

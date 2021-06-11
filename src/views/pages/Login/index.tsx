@@ -8,9 +8,6 @@ import FormSignIn from '../../../components/TabBarComponents/FormSignIn';
 import FormSignUp from '../../../components/TabBarComponents/FormSignUp';
 
 const Login: React.FC = () => {
-
-  localStorage.getItem('@TokenAGMed') && localStorage.removeItem('@TokenAGMed')
-
   return (
     <LoginContent>
       <div className="container">

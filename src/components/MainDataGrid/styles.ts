@@ -7,26 +7,34 @@ export const GridContent = styled.div`
   font-size: 14px;
 
   & h2 {
+    color: #fff;
     line-height: 52px;
   }
 
   & .main-item{
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
-    background-color: #EDF6FF;
+    background-color: #7C0000;
     border-radius: 5px;
-    width: 52.5%;
+    width: 49.5%;
   }
 
   & .co-item{
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
-    background-color: #EDF6FF;
+    background-color: #7C0000;
     border-radius: 5px;
-    width: 37.5%;
+    width: 49.5%;
   }
 
   & .grid{
     background-color: #fff;
     height: 850px;
+
+    & button {
+      margin: 0 auto;
+      width: 90%;
+      border-radius:10px;
+      color: #fff;
+    }
   }
 
   & .value-1{
