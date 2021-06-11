@@ -1,3 +1,13 @@
+export interface IAutoMedRec {
+  id: string | undefined,
+  attendance_date: string,
+  specialist_name: string,
+  email: string,
+  attendance_value: string,
+  attendance_status: string,
+  couple_id: number | undefined,
+}
+
 export interface IPatientId {
   name: string;
   cpf: string;

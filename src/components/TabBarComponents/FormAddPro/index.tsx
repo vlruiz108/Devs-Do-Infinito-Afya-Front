@@ -21,6 +21,7 @@ const FormAddPro: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
+    toast.info('Campos obrigatórios *')
     api.get('profession', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
@@ -143,7 +144,7 @@ const FormAddPro: React.FC = () => {
           onChange={e => setFormDataContent({ ...formDataContent, uf: e.target.value })}
         />
       </form>
-      { isLoaded ? (
+      {isLoaded ? (
         <Button variant="contained" color="primary" type="submit" disabled>
           <CircularProgress size="20px" />
         </Button>

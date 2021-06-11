@@ -21,6 +21,10 @@ padding: 30px;
       margin: 7px 0px;
     }
 
+    & .MuiInputBase-input{
+      margin-top: 10px;
+    }
+
     & #phone-box{
       display: flex;
       justify-content: space-between;

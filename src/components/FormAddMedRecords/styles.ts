@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FormAddSchedulesContent = styled.div`
+export const FormMRContent = styled.div`
   margin: 0 auto ;
   width: 85%;
   height: 85%;

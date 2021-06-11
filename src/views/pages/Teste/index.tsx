@@ -1,20 +1,46 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
-import React from 'react';
+import { Button, TextField } from '@material-ui/core';
+import React, { useCallback, useState } from 'react';
+
+
+interface IData {
+  "a": boolean,
+  "b": boolean,
+  "c": boolean,
+  "d": boolean,
+  "e": boolean,
+}
+
+const items = [
+  { name: 'a', nu: 1 },
+  { name: 'b', number: 2 },
+  { name: 'c', number: 3 },
+  { name: 'd', number: 4 },
+  { name: 'e', number: 5 }
+]
 
 const Teste: React.FC = () => {
+
+  const [data, setData] = useState<IData>({} as IData);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      let num = (Math.floor(Math.random() * 5) + 1)
+      num === 1 && setData({ ...data, a: true })
+      num === 2 && setData({ ...data, b: true })
+      num === 3 && setData({ ...data, c: true })
+      num === 4 && setData({ ...data, d: true })
+      num === 5 && setData({ ...data, e: true })
+    }, [])
+
   return (
     <div>
-      <FormControl color="primary">
-        <InputLabel id="blood-pro" >Profissão*</InputLabel>
-        <Select
-          labelId="blood-pro"
-          label="Profissão"
-        >
-          <MenuItem value='null'>
-            <em>Escolha a profissão</em>
-          </MenuItem>
-        </Select>
-      </FormControl>
+      <TextField label="1" id="1" type="text" variant="outlined" size="small" color="primary" error={data.a} required />
+      <TextField label="1" id="2" type="text" variant="outlined" size="small" color="primary" required />
+      <TextField label="1" id="3" type="text" variant="outlined" size="small" color="primary" required />
+      <TextField label="1" id="4" type="text" variant="outlined" size="small" color="primary" required />
+      <TextField label="1" id="5" type="text" variant="outlined" size="small" color="primary" error required />
+      <Button variant="contained" onClick={handleClick} color="primary" type="submit" >ok</Button>
     </div>
   );
 }

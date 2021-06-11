@@ -15,7 +15,7 @@ const App: React.FC = () => {
         <GlobalStyles />
         <Routes />
         <ToastContainer
-          position="top-center"
+          position="top-right"
           autoClose={2000}
         />
       </ThemeProvider>

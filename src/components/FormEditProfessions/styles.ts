@@ -1,16 +1,41 @@
 import styled from 'styled-components';
 
-export const FormEditProfessionContent = styled.form`
-  margin: 60px auto;
-  padding: 40px;
-  width: 75%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  background-color: #fff;
+export const FormEditProfessionContent = styled.div`
+margin: 0 auto ;
+  width: 85%;
+  height: 85%;
+  border-radius: 5px;
+  background-color: #EDF6FF;
+  box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
+
+  & h2 {
+  background-color: #7C0000;
+  height: 50px;
+  border-radius: 5px;
+  color: white;
+  padding: 30px 10px 10px 10px;
+  }
+
+  & form{
+  margin: 0 auto;
+  padding-top: 20px;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
 
+    & #box{
+      margin: 0 auto;
+      width: 80%;
+      height: 70%;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around; 
+      flex-direction: column;
+      align-items: center;
+      gap: 20px; 
+      padding: 60px 30px 0 30px;
+      background: #fff;
+    }}
     & section{
       margin: 0 auto;
       width: 60%;

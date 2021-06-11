@@ -1,4 +1,4 @@
-import React, { useState, useCallback, FormEvent } from 'react';
+import React, { useState, useCallback, FormEvent, useEffect } from 'react';
 
 import { CPFInput, PhoneInput, ZipInput } from '../../MaskedInputs';
 import { FormAddPatientContent } from './styles';
@@ -17,6 +17,10 @@ const FormAddPatient: React.FC = () => {
   const [ZipContent, setZipContent] = useState<IZipContent>({} as IZipContent);
 
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    toast.info('Campos obrigatórios *')
+  })
 
   const patientSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {

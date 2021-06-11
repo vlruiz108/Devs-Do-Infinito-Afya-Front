@@ -20,6 +20,10 @@ export const FormAddPatientContent = styled.div`
     & *{
       margin: 7px 0px;
     }
+
+    & .MuiInputBase-input{
+      margin-top: 10px;
+    }
   
     & #check-address{
       margin: 10px 0 0 40px;
