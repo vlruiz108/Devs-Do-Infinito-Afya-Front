@@ -3,7 +3,10 @@ import React from 'react';
 import { MedRecordContent } from './styles';
 
 import MainNavBar from '../../../components/MainNavBar';
-import FormAddMedRecords from '../../../components/FormAddMedRecords';
+import FormAddMedRecords from '../../../components/TabBarComponents/FormAddMedRecords';
+import TabBar from '../../../components/TabBar';
+import { Group, GroupAdd } from '@material-ui/icons';
+import MedRecList from '../../../components/TabBarComponents/MedRecList';
 
 const MedRecords: React.FC = () => {
   return (
@@ -12,7 +15,14 @@ const MedRecords: React.FC = () => {
         <div className="container">
           <MainNavBar />
           <div className="content">
-            <FormAddMedRecords />
+            <TabBar
+              FIcon={<Group />}
+              SIcon={<GroupAdd />}
+              FLabel="Todos Prontuários"
+              SLabel="Cadastrar histórico ao prontuário"
+              FContent={MedRecList}
+              SContent={FormAddMedRecords}
+            />
           </div>
         </div>
       </div>

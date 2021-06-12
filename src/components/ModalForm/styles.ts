@@ -6,9 +6,22 @@ export const ModalFormContent = styled.div`
   flex-direction: column;
   align-items: center;
  
-  & div{
-    width:100px;
-    height:100px;
+  & .content{
+    width:800px;
+    height:700px;
+    border-radius: 5px;
     background-color: #ccc;
+
+    & .container{
+      margin: 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 90%;
+
+      & .confirm{
+        width: 100%;
+      }
+    }
   }
 `

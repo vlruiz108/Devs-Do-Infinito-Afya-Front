@@ -1,6 +1,7 @@
 export interface IAutoMedRec {
   id: string | undefined,
   attendance_date: string,
+  client_name: string,
   specialist_name: string,
   email: string,
   attendance_value: string,

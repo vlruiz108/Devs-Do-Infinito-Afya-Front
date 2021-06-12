@@ -10,18 +10,26 @@ import { toast } from 'react-toastify';
 
 import { api, apiAddress } from '../../../service/api';
 
+interface IDataError {
+  register: boolean;
+  cpf: boolean;
+  zip: boolean;
+  email: boolean;
+  uf: boolean;
+}
+
 const FormAddPro: React.FC = () => {
 
   const [pros, setPros] = useState<IProfession[]>([])
 
   const [formDataContent, setFormDataContent] = useState<IProId>({} as IProId);
+  const [formDataError, setFormDataError] = useState<IDataError>({} as IDataError);
 
   const [ZipContent, setZipContent] = useState<IZipContent>({} as IZipContent);
 
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    toast.info('Campos obrigatórios *')
     api.get('profession', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
@@ -47,10 +55,33 @@ const FormAddPro: React.FC = () => {
         response => {
           toast.success('Sucesso no cadastro!')
         }
-      ).catch(err => toast.error('Ooops, algo deu errado')).finally(() => {
+      ).catch(err => {
+        err.response.data.errors.forEach((erro: any) => {
+          if (erro.msg === "Entre com um valor numérico de número de registro" || "Número de registro vazio") {
+            toast.error(erro.msg)
+            setFormDataError({ ...formDataError, register: true })
+          }
+          if (erro.msg === "CEP inválido" || "Entre com um valor numérico de CEP") {
+            toast.error(erro.msg)
+            setFormDataError({ ...formDataError, zip: true })
+          }
+          if (erro.msg === "Número de CPF informado inválido." || "Entre com um valor numérico de CPF") {
+            toast.error(erro.msg)
+            setFormDataError({ ...formDataError, cpf: true })
+          }
+          if (erro.msg === "Entre com um email válido") {
+            toast.error(erro.msg)
+            setFormDataError({ ...formDataError, email: true })
+          }
+          if (erro.msg === "UF inválida") {
+            toast.error(erro.msg)
+            setFormDataError({ ...formDataError, uf: true })
+          }
+        })
+      }).finally(() => {
         setIsLoaded(false)
       })
-    }, [formDataContent])
+    }, [formDataContent, formDataError])
 
   const handleCPF = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
@@ -86,13 +117,13 @@ const FormAddPro: React.FC = () => {
         <TextField label="Nome" color="primary" required
           onChange={e => setFormDataContent({ ...formDataContent, specialist_name: e.target.value })}
         />
-        <CPFInput label="CPF" color="primary"
+        <CPFInput label="CPF" color="primary" error={formDataError.cpf} required={true}
           onChange={handleCPF}
         />
-        <TextField type="number" label="Número de registro" color="primary" required inputProps={{ min: 0 }}
+        <TextField type="number" label="Número de registro" color="primary" error={formDataError.register} required={true} inputProps={{ min: 0 }}
           onChange={e => setFormDataContent({ ...formDataContent, register: e.target.value })}
         />
-        <TextField label="Email" color="primary" required
+        <TextField label="Email" color="primary" required error={formDataError.email}
           onChange={e => setFormDataContent({ ...formDataContent, email: e.target.value })}
         />
         <div id="phone-box">
@@ -119,7 +150,7 @@ const FormAddPro: React.FC = () => {
           </Select>
         </FormControl>
         <div id="zip-box">
-          <ZipInput label="CEP" color="primary"
+          <ZipInput label="CEP" color="primary" error={formDataError.zip} required={true}
             onChange={e => setZipContent({ ...ZipContent, cep: e.target.value })}
           />
           {isLoaded ? (
@@ -140,7 +171,7 @@ const FormAddPro: React.FC = () => {
         <TextField label="Cidade" color="primary" value={formDataContent.locale} focused required
           onChange={e => setFormDataContent({ ...formDataContent, locale: e.target.value })}
         />
-        <TextField label="Estado" color="primary" value={formDataContent.uf} focused required
+        <TextField label="Estado" color="primary" value={formDataContent.uf} error={formDataError.uf} required={true}
           onChange={e => setFormDataContent({ ...formDataContent, uf: e.target.value })}
         />
       </form>
@@ -149,7 +180,7 @@ const FormAddPro: React.FC = () => {
           <CircularProgress size="20px" />
         </Button>
       ) : (
-        <Button onClick={proSubmit} variant="contained" color="primary">Cadastrar Paciente</Button>
+        <Button onClick={proSubmit} variant="contained" color="primary">Cadastrar Profissional</Button>
       )}
     </FormAddProContent >
   );

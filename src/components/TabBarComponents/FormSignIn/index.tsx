@@ -18,6 +18,7 @@ interface IUserLogin {
 const FormSignIn: React.FC = () => {
 
   const [formDataContent, setFormDataContent] = useState<IUserLogin>({} as IUserLogin);
+  const [formDataError, setFormDataError] = useState<boolean>(false);
 
   const [isLogged, setIsLogged] = useState<boolean>(false);
 
@@ -27,6 +28,7 @@ const FormSignIn: React.FC = () => {
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setIsLogged(true)
+      setFormDataError(false)
       api.post('login', formDataContent).then(
         response => {
           localStorage.setItem('@TokenAGMed', response.data.token);
@@ -34,14 +36,9 @@ const FormSignIn: React.FC = () => {
           history.push('/home')
         }
       ).catch(err => {
-        if (err.response.status === 400) {
-          toast.error('Dados inválidos, digite novamente')
-        } else {
-          toast.error('Ooops, algo deu errado')
-        }
-      }).finally(() => {
-        setIsLogged(false)
-      })
+        toast.error('Dados inválidos, digite novamente')
+        if (err.response.data.message === "Login incorreto") setFormDataError(true)
+      }).finally(() => setIsLogged(false))
     }, [formDataContent, history])
 
   const handleReset = (MouseEventHandler: FormEvent<HTMLAnchorElement>) => {
@@ -55,10 +52,10 @@ const FormSignIn: React.FC = () => {
           <LockIcon />
         </div>
         <h2>Faça o Login</h2>
-        <TextField id="email-login" label="Email" type="text" variant="outlined" size="small" color="primary" required
+        <TextField id="email-login" label="Email" type="text" variant="outlined" size="small" color="primary" required error={formDataError}
           onChange={e => setFormDataContent({ ...formDataContent, user_email: e.target.value })}
         />
-        <TextField id="password-login" label="Senha" type="password" variant="outlined" size="small" color="primary" required
+        <TextField id="password-login" label="Senha" type="password" variant="outlined" size="small" color="primary" required error={formDataError}
           onChange={e => setFormDataContent({ ...formDataContent, password: e.target.value })}
         />
         {isLogged ? (

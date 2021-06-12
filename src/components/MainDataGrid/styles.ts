@@ -92,15 +92,15 @@ export const GridContent = styled.div`
     display: block;
     
     & .main-item {
-      height: 80vh;
+      height: 800px;
       width: 100%;
       margin: 20px 0;
     }
 
     & .co-item{
-      height: 80vh;
+      height: 800px;
       width: 100%;
-      margin-top: 225px;
+      margin-top: 150px;
     }
 
   }

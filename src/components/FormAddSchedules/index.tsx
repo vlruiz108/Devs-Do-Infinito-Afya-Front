@@ -89,7 +89,7 @@ const FormAddSchedules: React.FC = () => {
                 {option.client_name} ({option.cpf.substr(0, 3)}.{option.cpf.substr(3, 3)}.{option.cpf.substr(6, 2)}-{option.cpf.substr(8, 3)})
               </React.Fragment>
             )}
-            getOptionLabel={(option) => option.cpf}
+            getOptionLabel={(option) => option.client_name}
             renderInput={(params) => <TextField {...params} label="Selecione o paciente" variant="outlined" required />}
           />
           <Autocomplete
