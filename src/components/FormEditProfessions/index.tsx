@@ -7,7 +7,6 @@ import { Button, TextField, CircularProgress } from '@material-ui/core';
 import { api } from '../../service/api';
 import { IProfession } from '../../assets/FormAddClientConfig';
 import { Autocomplete } from '@material-ui/lab';
-import { toast } from 'react-toastify';
 
 interface IProForm {
   profession_name: string;
@@ -103,23 +102,8 @@ const FormEditProfessions: React.FC = () => {
               style={{ height: 55 }}
               onChange={(e, value) => setFormPro({ ...formPro, id_profession: value?.id })}
               getOptionLabel={(option) => option.profession_name}
-              renderInput={(params) => <TextField {...params} label="Selecione o paciente" variant="outlined" required />}
+              renderInput={(params) => <TextField {...params} label="Selecione a profissão" variant="outlined" required />}
             />
-            {/* <FormControl color="primary" >
-          <InputLabel id="profession" >Profissão*</InputLabel>
-          <Select
-            labelId="profession"
-            label="Profissão"
-            defaultValue={-1}
-            variant="outlined"
-            onChange={e => setFormPro({ ...formPro, id_profession: e.target.value })}
-          >
-            <MenuItem value='null'>
-              <em>Escolha a profissão</em>
-            </MenuItem>
-            {profession.map((pro, i) => <MenuItem key={i} value={pro?.id}>{pro?.profession_name}</MenuItem>)}
-          </Select>
-        </FormControl> */}
             <TextField label="Definir profissão" color="primary" variant="outlined" required
               onChange={e => setFormPro({ ...formPro, profession_name: e.target.value })}
             />

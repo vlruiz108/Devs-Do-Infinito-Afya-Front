@@ -2,12 +2,154 @@ import React, { useEffect, useState } from 'react';
 
 import { GridContent } from './styles';
 
-import { DataGrid } from '@material-ui/data-grid';
-import { columnsMain, columnsCo, IMainRow } from '../../assets/DataGridConfig'
+import { DataGrid, GridCellParams, GridColDef, GridRowParams } from '@material-ui/data-grid';
+import Modal from '@material-ui/core/Modal';
+import { IMainRow } from '../../assets/DataGridConfig';
+import { Check, Close, Reorder } from '@material-ui/icons';
+import ModalForm from '../../components/ModalForm';
+
 
 import { api } from '../../service/api';
+import { Button } from '@material-ui/core';
 
 const MainDataGrid: React.FC = () => {
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleState = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const columnsMain: GridColDef[] = [
+    {
+      field: 'client_name',
+      headerName: 'Paciente',
+      headerAlign: 'left',
+      flex: 1.6
+    },
+    {
+      field: 'specialist_name',
+      headerName: 'Profissional',
+      headerAlign: 'left',
+      flex: 1.6
+    },
+    {
+      field: 'attendance_value',
+      headerName: 'Valor',
+      headerAlign: 'left',
+      flex: 1.2,
+      renderCell: (params: GridCellParams) => (
+        <>
+          $ {(params.value as string).replace(".", ",")}
+        </>
+      )
+    },
+    {
+      field: 'attendance_status',
+      headerName: 'Status',
+      flex: 1.5,
+      renderCell: (params: GridCellParams) => (
+        <strong>
+          {params.value === "Realizado" &&
+            <Button
+              onClick={handleState}
+              variant="contained"
+              className="done"
+              startIcon={<Check />}
+            >Realizado</Button>
+          }
+          {params.value === "Cancelado" &&
+            <Button
+              onClick={handleState}
+              variant="contained"
+              className="canceled"
+              startIcon={<Close />}
+            >Cancelado</Button>
+          }
+          {params.value === "Agendado" &&
+            <Button
+              onClick={handleState}
+              variant="contained"
+              className="scheduled"
+              startIcon={<Reorder />}
+            >Agendado</Button>
+          }
+        </strong>
+      ),
+    }
+  ];
+
+  const columnsCo: GridColDef[] = [
+    {
+      field: 'attendance_date',
+      headerName: 'Data',
+      flex: 1.3
+    }, {
+      field: 'client_name',
+      headerName: 'Paciente',
+      headerAlign: 'left',
+      flex: 1.6
+    },
+    {
+      field: 'specialist_name',
+      headerName: 'Profissional',
+      headerAlign: 'left',
+      flex: 1.3
+    },
+    {
+      field: 'attendance_value',
+      headerName: 'Valor',
+      headerAlign: 'left',
+      flex: 1.3,
+      renderCell: (params: GridCellParams) => (
+        <>
+          $ {(params.value as string).replace(".", ",")}
+        </>
+      )
+    },
+    {
+      field: 'email_client',
+      headerName: 'Email',
+      flex: 2
+    },
+    {
+      field: 'attendance_status',
+      headerName: 'Status',
+      flex: 1.5,
+      renderCell: (params: GridCellParams) => (
+        <strong>
+          {params.value === "Realizado" &&
+            <Button
+              onClick={handleState}
+              variant="contained"
+              className="done"
+              startIcon={<Check />}
+            >Realizado</Button>
+          }
+          {params.value === "Cancelado" &&
+            <Button
+              onClick={handleState}
+              variant="contained"
+              className="canceled"
+              startIcon={<Close />}
+            >Cancelado</Button>
+          }
+          {params.value === "Agendado" &&
+            <Button
+              onClick={handleState}
+              variant="contained"
+              className="scheduled"
+              startIcon={<Reorder />}
+            >Agendado</Button>
+          }
+        </strong>
+      ),
+    }
+  ];
 
   const [rowA, setRowA] = useState<IMainRow[]>([])
   const [rowB, setRowB] = useState<IMainRow[]>([])
@@ -61,22 +203,31 @@ const MainDataGrid: React.FC = () => {
         <h2>Agendamentos do dia</h2>
         <div>
           {isLoadedMain ? (
-            <DataGrid className="grid" rows={rowA} columns={columnsMain} checkboxSelection loading />
+            <DataGrid className="grid" rows={rowA} columns={columnsMain} loading />
           ) : (
-            <DataGrid className="grid" rows={rowA} columns={columnsMain} pageSize={14} checkboxSelection
-              getRowClassName={(params) => `value-${params?.getValue(params.id, 'couple_id')}`}
+            <DataGrid className="grid" rows={rowA} columns={columnsMain} pageSize={14} checkboxSelection disableSelectionOnClick
+              getRowClassName={(params: GridRowParams) => `value-${params?.getValue(params.id, 'couple_id')}`}
             />
           )}
+          <Modal
+            className="modalBox"
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            <ModalForm />
+          </Modal>
         </div>
       </section>
       <section className="co-item">
         <h2>Próximos agendamentos</h2>
         <div>
           {isLoadedCo ? (
-            <DataGrid className="grid" rows={rowB} columns={columnsCo} checkboxSelection loading />
+            <DataGrid className="grid" rows={rowB} columns={columnsCo} loading />
           ) : (
-            <DataGrid className="grid" rows={rowB} columns={columnsCo} pageSize={14} checkboxSelection
-              getRowClassName={(params) => `value-${params.getValue(params.id, 'couple_id')}`}
+            <DataGrid className="grid" rows={rowB} columns={columnsCo} pageSize={14} checkboxSelection disableSelectionOnClick
+              getRowClassName={(params: GridRowParams) => `value-${params.getValue(params.id, 'couple_id')}`}
             />
           )}
         </div>

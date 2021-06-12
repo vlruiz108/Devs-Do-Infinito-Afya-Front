@@ -23,7 +23,6 @@ export const ConfigContent = styled.div`
   & .content{
     border-radius: 5px;
     width: 80%;
-    box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
     margin:20px 40px;
     
   }

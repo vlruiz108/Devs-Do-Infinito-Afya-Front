@@ -48,11 +48,13 @@ export interface IProfession {
 export interface IProfessional {
   id: string,
   specialist_name: string,
+  profession_name: string,
 }
 
 export interface IPatient {
   id: string,
   client_name: string,
+  cpf: string,
 }
 
 export interface IZipContent {

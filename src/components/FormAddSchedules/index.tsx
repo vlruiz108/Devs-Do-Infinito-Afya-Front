@@ -84,7 +84,12 @@ const FormAddSchedules: React.FC = () => {
             autoHighlight
             style={{ height: 55 }}
             onChange={(e, value) => setFormSchedule({ ...formSchedule, FK_id_med_reg: value?.id })}
-            getOptionLabel={(option) => option.client_name}
+            renderOption={(option) => (
+              <React.Fragment>
+                {option.client_name} ({option.cpf.substr(0, 3)}.{option.cpf.substr(3, 3)}.{option.cpf.substr(6, 2)}-{option.cpf.substr(8, 3)})
+              </React.Fragment>
+            )}
+            getOptionLabel={(option) => option.cpf}
             renderInput={(params) => <TextField {...params} label="Selecione o paciente" variant="outlined" required />}
           />
           <Autocomplete
@@ -92,6 +97,7 @@ const FormAddSchedules: React.FC = () => {
             options={professionals}
             autoHighlight
             style={{ height: 55 }}
+            groupBy={(option) => option.profession_name}
             onChange={(e, value) => setFormSchedule({ ...formSchedule, FK_id_specialist: value?.id })}
             getOptionLabel={(option) => option.specialist_name}
             renderInput={(params) => <TextField {...params} label="Selecione o Especialista" variant="outlined" required />}
