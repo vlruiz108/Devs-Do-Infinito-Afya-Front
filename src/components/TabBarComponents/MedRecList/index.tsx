@@ -22,10 +22,6 @@ interface IHistoric {
   FK_id_attendances: string
 }
 
-// interface IMedRecList {
-//   data: IHistoric[];
-// }
-
 const MedRecList: React.FC = () => {
 
   const [patients, setPatients] = useState<IAutoMedRec[]>([])
@@ -47,18 +43,19 @@ const MedRecList: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    console.log(fkId)
-    fkId === undefined && setIsLoaded(false)
-    api.get(`historic/${fkId}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
-      }
-    }).then(
-      response => {
-        setIsLoaded(true)
-        setHistoric(response.data)
-      }
-    ).catch(err => console.error(err))
+    if (fkId !== " " || undefined) {
+      setIsLoaded(false)
+      api.get(`historic/${fkId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
+        }
+      }).then(
+        response => {
+          setIsLoaded(true)
+          setHistoric(response.data)
+        }
+      )
+    }
   }, [fkId])
 
   return (
@@ -77,7 +74,7 @@ const MedRecList: React.FC = () => {
           />
         </div>
       </div>
-      {/* {isLoaded &&
+      {isLoaded &&
         <div className="historic">
           <List className="item" subheader={<li />} style={{
             overflow: 'auto',
@@ -89,20 +86,15 @@ const MedRecList: React.FC = () => {
                   backgroundColor: 'inherit',
                   padding: 0,
                 }}>
-                  <ListSubheader>{`-${new Date(data).toLocaleDateString('pt-br')}-`}</ListSubheader>
-                  {historic.map((item) => (
-                    <ListItem key={`-${new Date(data).toLocaleDateString('pt-br')}-`}>
-                      <ListItemText primary={`Item ${item.description}`} />
-                    </ListItem>
-                  ))}
-                  <ListItem key={i}>
-                    <ListItemText primary={`Item ${data.description}`} />
+                  <ListSubheader>{data.time_med_reg}</ListSubheader>
+                  <ListItem key={data.time_med_reg}>
+                    <ListItemText primary={data.description} />
                   </ListItem>
                 </ul>
               </li>
             ))}
           </List>
-        </div>} */}
+        </div>}
     </MedRecListContent >
   );
 }

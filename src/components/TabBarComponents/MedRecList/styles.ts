@@ -20,7 +20,7 @@ export const MedRecListContent = styled.div`
       width: 75%;
       padding: 20px;
       margin: 30px;
-      height: 60%;
+      height: 65px;
       border-radius: 5px;
       background: #fff;
 
