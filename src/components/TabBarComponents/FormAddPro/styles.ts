@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const FormAddProContent = styled.div`
-padding: 30px;
+  padding: 0 20px;
   margin: 0 auto;
   margin-top: 30px;
-  width: 65%;
-  height: 640px;
+  width: 75%;
+  height: 700px;
   display: flex;
   border-radius: 5px;
   justify-content: space-around;
@@ -15,14 +15,10 @@ padding: 30px;
   & .form-field{
     display: grid;
     grid-template-columns: 48% 48%;
-    grid-gap: 4%;
+    gap: 20px;
 
     & *{
       margin: 7px 0px;
-    }
-
-    & .MuiInputBase-input{
-      margin-top: 10px;
     }
 
     & #phone-box{
@@ -34,10 +30,6 @@ padding: 30px;
     & #check-address{
       margin: 10px 0 0 40px;
     }
-  }
-
-  & button{
-    margin-top: 150px;
   }
 
   @media(max-width: 960px){

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const FormMRContent = styled.div`
   margin: 0 auto ;
   width: 100%;
-  height: 750px;
+  height: 650px;
   border-radius: 5px;
   background-color: #EDF6FF;
   box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
@@ -45,15 +45,15 @@ export const FormMRContent = styled.div`
   }
 
   @media(max-width: 960px){
-    margin-top: 5px;
     width: 100%;
-    height: 100%;
+    height: 630px;
+    padding-top: 40px;
 
     & form{
       height:90%;
 
       & #box{
-        display: block;
+        display: flex;
         height: 500px;
 
       }

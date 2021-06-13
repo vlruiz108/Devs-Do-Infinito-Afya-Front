@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 
 import { IProfessional, IPatient } from '../../assets/FormAddClientConfig';
+
 import {
   Button,
   CircularProgress,
@@ -57,9 +58,8 @@ const FormAddSchedules: React.FC = () => {
   }, [])
 
   const ScheduleSubmit = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
+    (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      console.log(formSchedule)
       setIsLoaded(true)
       api.post('attendance', formSchedule, {
         headers: {
@@ -69,7 +69,7 @@ const FormAddSchedules: React.FC = () => {
         response => {
           toast.success('Sucesso no cadastro!')
         }
-      ).catch(err => toast.error('Ooops algo deu errado, tente novamente mais tarde')).finally(() => {
+      ).catch(err => console.log(err.response)).finally(() => {
         setIsLoaded(false)
       })
     }, [formSchedule])
@@ -77,7 +77,7 @@ const FormAddSchedules: React.FC = () => {
   return (
     <FormAddSchedulesContent>
       <h2>Agendar Consulta</h2>
-      <form>
+      <form onSubmit={ScheduleSubmit}>
         <div id="box">
           <Autocomplete
             id="Patient-select"
@@ -107,7 +107,6 @@ const FormAddSchedules: React.FC = () => {
             id="date"
             label="Data"
             type="date"
-            defaultValue="2021-06-14"
             className="row2"
             variant="outlined"
             onChange={e => setFormSchedule({ ...formSchedule, attendance_date: e.target.value })}
@@ -120,16 +119,12 @@ const FormAddSchedules: React.FC = () => {
             id="time"
             label="Horário"
             type="time"
-            defaultValue="12:30"
             className="row2"
             variant="outlined"
             onChange={e => setFormSchedule({ ...formSchedule, attendance_time: e.target.value })}
             required
             InputLabelProps={{
               shrink: true,
-            }}
-            inputProps={{
-              step: 300,
             }}
           />
           <FormControl variant="outlined" className="row2" required>
@@ -144,13 +139,14 @@ const FormAddSchedules: React.FC = () => {
               labelWidth={140}
             />
           </FormControl>
+
           <div className="row3">
             {isLoaded ? (
               <Button variant="contained" style={{ height: 55, width: 300 }} color="primary">
                 <CircularProgress size="20px" />
               </Button>
             ) : (
-              <Button onClick={ScheduleSubmit} variant="contained" style={{ height: 55, width: 300 }} color="primary" type="submit">Cadastrar Paciente</Button>
+              <Button variant="contained" style={{ height: 55, width: 300 }} color="primary" type="submit">Cadastrar Paciente</Button>
             )}
           </div>
         </div>

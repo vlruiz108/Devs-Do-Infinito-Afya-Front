@@ -8,11 +8,14 @@ const PrivateRoutes: any = ({ component: Component, path: Path, ...rest }: any) 
     if (isLogin === null) {
       return false
     } else {
-      const onlyToken: any = isLogin
-      const tokenPayLoad: any = jwt.decode(onlyToken)
-      const expSeconds = tokenPayLoad.exp;
-      const timeNow = Date.now() / 1000;
-      return timeNow > expSeconds ? false : true
+      const tokenPayLoad: any = jwt.decode(isLogin)
+      if (tokenPayLoad === null) {
+        return false
+      } else {
+        const expSeconds = tokenPayLoad.exp;
+        const timeNow = Date.now() / 1000;
+        return timeNow > expSeconds ? false : true
+      }
     }
   }
 

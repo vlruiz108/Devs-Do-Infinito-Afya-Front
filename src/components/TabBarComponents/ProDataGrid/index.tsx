@@ -37,13 +37,9 @@ const ProDataGrid: React.FC = () => {
       <section className="main-item">
         {isLoaded ?
           (
-            <DataGrid className="grid" rows={row} columns={columnsPro} pageSize={12} loading
-              getRowClassName={(params) => `value-${params?.getValue(params.id, 'couple_id')}`}
-            />
+            <DataGrid className="grid" rows={row} columns={columnsPro} pageSize={12} loading />
           ) : (
-            <DataGrid className="grid" rows={row} columns={columnsPro} pageSize={12}
-              getRowClassName={(params) => `value-${params?.getValue(params.id, 'couple_id')}`}
-            />
+            <DataGrid className="grid" rows={row} columns={columnsPro} pageSize={12} />
           )}
       </section>
     </GridContent>

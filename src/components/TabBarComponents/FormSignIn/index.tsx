@@ -7,7 +7,7 @@ import { api } from '../../../service/api';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { Button, TextField, CircularProgress } from '@material-ui/core';
+import { Button, TextField, CircularProgress, Dialog, DialogTitle } from '@material-ui/core';
 import LockIcon from '@material-ui/icons/Lock';
 
 interface IUserLogin {
@@ -21,6 +21,9 @@ const FormSignIn: React.FC = () => {
   const [formDataError, setFormDataError] = useState<boolean>(false);
 
   const [isLogged, setIsLogged] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+
+  const [emailReset, setEmailReset] = useState<IUserLogin>({} as IUserLogin);
 
   const history = useHistory();
 
@@ -37,13 +40,20 @@ const FormSignIn: React.FC = () => {
         }
       ).catch(err => {
         toast.error('Dados inválidos, digite novamente')
-        if (err.response.data.message === "Login incorreto") setFormDataError(true)
+        setFormDataError(true)
       }).finally(() => setIsLogged(false))
     }, [formDataContent, history])
 
-  const handleReset = (MouseEventHandler: FormEvent<HTMLAnchorElement>) => {
-    toast.info('Nova senha enviada por email')
-  }
+  const handleReset = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      api.post('login/reset', emailReset).then(
+        response => {
+          toast.info('Nova senha enviada por email')
+        }
+      ).catch(err => toast.error('Dados inválidos, digite novamente'))
+    }, [emailReset])
+
 
   return (
     <FormSignInContent>
@@ -52,7 +62,7 @@ const FormSignIn: React.FC = () => {
           <LockIcon />
         </div>
         <h2>Faça o Login</h2>
-        <TextField id="email-login" label="Email" type="text" variant="outlined" size="small" color="primary" required error={formDataError}
+        <TextField id="email-login" label="Email" type="email" variant="outlined" size="small" color="primary" required error={formDataError}
           onChange={e => setFormDataContent({ ...formDataContent, user_email: e.target.value })}
         />
         <TextField id="password-login" label="Senha" type="password" variant="outlined" size="small" color="primary" required error={formDataError}
@@ -65,9 +75,18 @@ const FormSignIn: React.FC = () => {
         ) : (
           <Button variant="contained" color="primary" type="submit">Login</Button>
         )}
-        <a onClick={handleReset}> Esqueci minha senha</a>
+        <Button color="secondary" onClick={() => setOpen(true)}>
+          Esqueceu sua senha
+        </Button>
+        <Dialog open={open} onClose={() => setOpen(false)}>
+          <DialogTitle>Redefinir senha</DialogTitle>
+          <TextField label="Email" type="email" variant="outlined" size="small" color="primary" fullWidth
+            onChange={e => setEmailReset({ ...emailReset, user_email: e.target.value })}
+          />
+          <Button variant="contained" color="primary" onClick={handleReset} fullWidth>enviar</Button>
+        </Dialog>
       </form>
-    </FormSignInContent>
+    </FormSignInContent >
   );
 }
 

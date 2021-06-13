@@ -4,7 +4,6 @@ import { FormSignUpContent } from './styles';
 
 import { api } from '../../../service/api';
 
-import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { Button, TextField, CircularProgress } from '@material-ui/core';
@@ -22,8 +21,6 @@ const FormSignUp: React.FC = () => {
   const [formDataError, setFormDataError] = useState<boolean>(false);
 
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
-
-  const history = useHistory();
 
   const RegisterSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -43,7 +40,7 @@ const FormSignUp: React.FC = () => {
       }).finally(() => {
         setIsRegistered(false)
       })
-    }, [formDataContent, history])
+    }, [formDataContent])
 
   return (
     <FormSignUpContent>

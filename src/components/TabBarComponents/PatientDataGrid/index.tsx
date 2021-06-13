@@ -24,7 +24,6 @@ const PatientDataGrid: React.FC = () => {
         const datas = response.data
         for (let i = 0; i < datas.length; i++) {
           datas[i].cpf = `${datas[i].cpf.substr(0, 3)}.${datas[i].cpf.substr(3, 3)}.${datas[i].cpf.substr(6, 2)}-${datas[i].cpf.substr(8, 3)}`;
-          datas[i].couple_id = (datas[i].id) % 2
         }
         setRow(datas)
       }
@@ -38,13 +37,9 @@ const PatientDataGrid: React.FC = () => {
       <section className="main-item">
         {isLoaded ?
           (
-            <DataGrid className="grid" rows={row} columns={columnsPatient} pageSize={12} loading
-              getRowClassName={(params) => `value-${params?.getValue(params.id, 'couple_id')}`}
-            />
+            <DataGrid className="grid" rows={row} columns={columnsPatient} pageSize={12} loading />
           ) : (
-            <DataGrid className="grid" rows={row} columns={columnsPatient} pageSize={12}
-              getRowClassName={(params) => `value-${params?.getValue(params.id, 'couple_id')}`}
-            />
+            <DataGrid className="grid" rows={row} columns={columnsPatient} pageSize={12} />
           )}
 
       </section>

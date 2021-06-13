@@ -12,7 +12,7 @@ export const LoginContent = styled.div`
     width: 50%;
     margin: 0 auto;
   }
-  
+
   & .content{
     border-radius: 17px;
     background: rgba(0,0,0,0.3);

@@ -3,8 +3,25 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import MaskedInput from 'react-text-mask';
 
+
 interface TextMaskCustomProps {
   inputRef: (ref: HTMLInputElement | null) => void;
+}
+
+export function TextMaskCurrency(props: TextMaskCustomProps) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={(ref: any) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\n/, /\n/, /\n/, '.', /\n/, /\n/, /\n/, '.', /\n/, /\n/, /\n/, ',', /\n/, /\n/]}
+      placeholderChar={'\u2000'}
+      showMask
+    />
+  );
 }
 
 function TextMaskCPF(props: TextMaskCustomProps) {

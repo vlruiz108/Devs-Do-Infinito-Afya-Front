@@ -32,20 +32,20 @@ export const MedRecordContent = styled.div`
 
   @media(max-width: 960px){
     & #main{
-      height: 1050px;
+      height: 969px;
     }
 
     & .container{
     padding-top: 0;
     display: block;
     width: 100%;
+    height: 100%;
     margin: 0 auto;
     
     }
 
     & .content{
       width: 100%;
-      height: 900px;
       margin: 10px 0;
       padding: 0;
     }
