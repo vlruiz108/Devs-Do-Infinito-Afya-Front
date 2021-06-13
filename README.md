@@ -1,3 +1,7 @@
+# Deployed version
+
+To see the deployed version of the project [click here](https://agmed-front-dev.herokuapp.com/).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
