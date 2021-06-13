@@ -2,18 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { FormEditProfessionContent } from './styles';
 
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  CircularProgress
-} from '@material-ui/core';
+import { Button, TextField, CircularProgress } from '@material-ui/core';
 
 import { api } from '../../service/api';
 import { IProfession } from '../../assets/FormAddClientConfig';
+import { Autocomplete } from '@material-ui/lab';
 
 interface IProForm {
   profession_name: string;
@@ -45,7 +38,7 @@ const FormEditProfessions: React.FC = () => {
     ).catch(err => {
       console.error(err)
     })
-  }, [])
+  }, [profession])
 
   const ProfessionNewSubmit = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -84,51 +77,48 @@ const FormEditProfessions: React.FC = () => {
 
   return (
     <FormEditProfessionContent>
-      <section>
-        <TextField label="Definir nova profissão" color="primary" variant="outlined" required
-          onChange={e => setProfessionName({ profession_name: e.target.value })}
-        />
-        {isLoaded ? (
-          <Button variant="contained" color="primary" disabled>
-            <CircularProgress size="20px" />
-          </Button>
-        ) : (
-          <Button variant="contained" color="primary" onClick={ProfessionNewSubmit}>
-            Cadastrar nova profissão
-          </Button>
-        )}
-      </section>
-      <section>
-        <FormControl color="primary" >
-          <InputLabel id="profession" >Profissão*</InputLabel>
-          <Select
-            labelId="profession"
-            label="Profissão"
-            defaultValue={-1}
-            variant="outlined"
-            onChange={e => setFormPro({ ...formPro, id_profession: e.target.value })}
-          >
-            <MenuItem value='null'>
-              <em>Escolha a profissão</em>
-            </MenuItem>
-            {profession.map((pro, i) => <MenuItem key={i} value={pro?.id}>{pro?.profession_name}</MenuItem>)}
-          </Select>
-        </FormControl>
-        <TextField label="Definir profissão" color="primary" variant="outlined" required
-          onChange={e => setFormPro({ ...formPro, profession_name: e.target.value })}
-        />
-        <Button variant="contained" color="primary" onClick={ProfessionEditSubmit}
-        >Editar profissão</Button>
-        {isLoaded ? (
-          <Button variant="contained" color="primary" disabled>
-            <CircularProgress size="20px" />
-          </Button>
-        ) : (
-          <Button variant="contained" color="primary" onClick={ProfessionEditSubmit}>
-            Editar profissão
-          </Button>
-        )}
-      </section>
+      <h2>Definir Profissões</h2>
+      <form>
+        <div id="box">
+          <section>
+            <TextField label="Definir nova profissão" color="primary" variant="outlined" required
+              onChange={e => setProfessionName({ profession_name: e.target.value })}
+            />
+            {isLoaded ? (
+              <Button className="btn" variant="contained" color="primary" disabled>
+                <CircularProgress size="20px" />
+              </Button>
+            ) : (
+              <Button className="btn" variant="contained" color="primary" onClick={ProfessionNewSubmit}>
+                Cadastrar nova profissão
+              </Button>
+            )}
+          </section>
+          <section>
+            <Autocomplete
+              id="Patient-select"
+              options={profession}
+              autoHighlight
+              style={{ height: 55 }}
+              onChange={(e, value) => setFormPro({ ...formPro, id_profession: value?.id })}
+              getOptionLabel={(option) => option.profession_name}
+              renderInput={(params) => <TextField {...params} label="Selecione a profissão" variant="outlined" required />}
+            />
+            <TextField label="Definir profissão" color="primary" variant="outlined" required
+              onChange={e => setFormPro({ ...formPro, profession_name: e.target.value })}
+            />
+            {isLoaded ? (
+              <Button className="btn" variant="contained" color="primary" disabled>
+                <CircularProgress size="20px" />
+              </Button>
+            ) : (
+              <Button className="btn" variant="contained" color="primary" onClick={ProfessionEditSubmit}>
+                Editar profissão
+              </Button>
+            )}
+          </section>
+        </div>
+      </form>
     </FormEditProfessionContent>
   );
 }

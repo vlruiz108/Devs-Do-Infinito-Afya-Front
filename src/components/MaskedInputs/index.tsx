@@ -27,6 +27,8 @@ export const CPFInput: React.FC<{
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   label?: string;
   color?: "primary" | "secondary" | undefined;
+  error?: true | false | undefined;
+  required?: true | false | undefined;
 }> = (props) => {
 
   return (
@@ -35,7 +37,8 @@ export const CPFInput: React.FC<{
       color={props.color}
       onChange={props.onChange}
       name="textmask"
-      required
+      error={props.error}
+      required={props.required}
       InputProps={{
         inputComponent: TextMaskCPF as any,
       }}
@@ -99,15 +102,18 @@ export const ZipInput: React.FC<{
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   label?: string;
   color?: "primary" | "secondary" | undefined;
+  error?: true | false | undefined;
+  required?: true | false | undefined;
 }> = (props) => {
 
   return (
     <TextField
       label={props.label}
       color={props.color}
+      error={props.error}
       onChange={props.onChange}
       name="textmask"
-      required
+      required={props.required}
       InputProps={{
         inputComponent: TextMaskZip as any,
       }}

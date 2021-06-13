@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const FormAddSchedulesContent = styled.div`
+export const FormMRContent = styled.div`
   margin: 0 auto ;
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 750px;
   border-radius: 5px;
   background-color: #EDF6FF;
   box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
@@ -26,7 +26,7 @@ export const FormAddSchedulesContent = styled.div`
     & #box{
       margin: 0 auto;
       width: 85%;
-      height: 70%;
+      height: 80%;
       border-radius: 5px;
       display: flex;
       justify-content: space-around; 
@@ -34,16 +34,10 @@ export const FormAddSchedulesContent = styled.div`
       padding: 60px 30px 0 30px;
       background: #fff;
 
-      & .MuiAutocomplete-root{
-          width: 48%;
-        }
-
       & .row2{
-        width: 30%;
-      }
+        width: 100%;
+        height: 300px;
 
-      & .row3{
-        margin-bottom: -60px;
       }
 
     }
@@ -62,15 +56,6 @@ export const FormAddSchedulesContent = styled.div`
         display: block;
         height: 500px;
 
-        & .MuiFormControl-root{
-          width: 100%;
-          margin: 15px 0;
-        }
-
-        & .MuiAutocomplete-root{
-          width: 100%;
-          margin: 15px 0;
-        }
       }
     }
   }

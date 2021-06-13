@@ -23,14 +23,14 @@ export const HomeContent = styled.div`
   & .content{
     display: flex;
     border-radius: 5px;
-    width: 83.35%;
+    width: 83.20%;
     margin:20px 0 20px 20px;
     font-weight: bold;
   }
 
   @media(max-width: 960px){
     & #main{
-      height: 185vh;
+      height: 2000px;
     }
 
     & .container{

@@ -21,6 +21,10 @@ padding: 30px;
       margin: 7px 0px;
     }
 
+    & .MuiInputBase-input{
+      margin-top: 10px;
+    }
+
     & #phone-box{
       display: flex;
       justify-content: space-between;
@@ -37,7 +41,19 @@ padding: 30px;
   }
 
   @media(max-width: 960px){
-    width: 80%;
-    height: 690px;
+    width: 95%;
+    height: 1200px;
+    padding: 10px 2.5%;
+    margin:0;
+
+    & .form-field{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    }
+
+    & button{
+      margin: 60px 0 40px 0;
+  }
   }
 `

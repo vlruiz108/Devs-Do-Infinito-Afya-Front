@@ -19,6 +19,7 @@ interface IUserRegister {
 const FormSignUp: React.FC = () => {
 
   const [formDataContent, setFormDataContent] = useState<IUserRegister>({} as IUserRegister);
+  const [formDataError, setFormDataError] = useState<boolean>(false);
 
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
 
@@ -30,16 +31,15 @@ const FormSignUp: React.FC = () => {
       setIsRegistered(true)
       api.post('register', formDataContent).then(
         response => {
-          localStorage.setItem('@TokenAGMed', response.data.token);
-          toast.success('Sucesso no cadastro!')
-          history.push('/home')
+          toast.success('Sucesso no cadastro! Faça o Login')
         }
       ).catch(err => {
-        if (err.response.status === 400) {
-          toast.error('Dados já cadastrados, digite dados diferentes')
-        } else {
-          toast.error('Ooops, algo deu errado')
-        }
+        err.response.data.erros.forEach((erro: any) => {
+          setFormDataError(true)
+          if (erro.msg === "Informe um e-mail válido." || erro.msg === "Senha deve conter de 6 a 15 caracteres.") {
+            toast.error(erro.msg)
+          }
+        })
       }).finally(() => {
         setIsRegistered(false)
       })
@@ -52,13 +52,13 @@ const FormSignUp: React.FC = () => {
           <AddCircle />
         </div>
         <h2>Cadastre-se</h2>
-        <TextField id="email-register" label="Email*" type="email" variant="outlined" size="small" color="primary" required
+        <TextField id="email-register" label="Email*" type="email" variant="outlined" size="small" color="primary" required error={formDataError}
           onChange={e => setFormDataContent({ ...formDataContent, user_email: e.target.value })}
         />
-        <TextField id="name-register" label="Nome*" type="text" variant="outlined" size="small" color="primary" required
+        <TextField id="name-register" label="Nome*" type="text" variant="outlined" size="small" color="primary" required error={formDataError}
           onChange={e => setFormDataContent({ ...formDataContent, user_name: e.target.value })}
         />
-        <TextField id="password-register" label="Senha*" type="password" variant="outlined" size="small" color="primary" required
+        <TextField id="password-register" label="Senha*" type="password" variant="outlined" size="small" color="primary" required error={formDataError}
           onChange={e => setFormDataContent({ ...formDataContent, password: e.target.value })}
         />
         {isRegistered ? (

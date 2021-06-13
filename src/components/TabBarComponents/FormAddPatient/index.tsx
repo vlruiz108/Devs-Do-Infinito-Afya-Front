@@ -1,25 +1,51 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, FormEvent } from 'react';
 
 import { CPFInput, PhoneInput, ZipInput } from '../../MaskedInputs';
 import { FormAddPatientContent } from './styles';
 
 import { IPatientId, IZipContent } from '../../../assets/FormAddClientConfig';
 
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField, CircularProgress } from '@material-ui/core';
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  CircularProgress
+} from '@material-ui/core';
 import { toast } from 'react-toastify';
 
 import { api, apiAddress } from '../../../service/api';
 
+interface IError {
+  name: string
+  value: boolean;
+  message: string;
+}
+
+interface AllError {
+  data: IError[]
+}
+
 const FormAddPatient: React.FC = () => {
 
   const [formDataContent, setFormDataContent] = useState<IPatientId>({} as IPatientId);
+  const [formDataError, setFormDataError] = useState<AllError>({
+    data: [
+      { name: 'cpf', value: false, message: 'Número de CPF informado inválido.' },
+      { name: 'email', value: false, message: 'Entre com um email válido' },
+      { name: 'zip', value: false, message: 'CEP inválido' },
+      { name: 'uf', value: false, message: 'UF inválida' },
+    ]
+  });
 
   const [ZipContent, setZipContent] = useState<IZipContent>({} as IZipContent);
 
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const patientSubmit = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
+    (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setIsLoaded(true)
       api.post('/client', formDataContent, {
@@ -29,11 +55,47 @@ const FormAddPatient: React.FC = () => {
       }).then(
         response => {
           toast.success('Sucesso no cadastro!')
-          console.log(formDataContent)
         }
-      ).catch(err => toast.error('Ooops, algo deu errado')).finally(() => {
+      ).catch(err => {
+        formDataError?.data.map((data: any, i: any) => {
+          !!err.response.data.errors && console.log(`${data.value} // ${i}`)
+        })
+        console.log(err.response.data.errors)
+        // err.response.data.errors.map((erro: any) => {
+        //   err.msg ? err.
+        //   if (erro.msg === "CEP inválido") {
+        //     toast.error(erro.msg)
+        //     debugger;
+        //     return setFormDataError({ ...formDataError, zip: true })
+        //   }
+        //   if (erro.msg === "Número de CPF informado inválido.") {
+        //     toast.error(erro.msg)
+        //     debugger;
+        //     return setFormDataError({ ...formDataError, cpf: true })
+        //   }
+        //   if (erro.msg === "Entre com um email válido") {
+        //     toast.error(erro.msg)
+        //     debugger;
+        //     return setFormDataError({ ...formDataError, email: true })
+        //   }
+        //   if (erro.msg === "UF inválida") {
+        //     toast.error(erro.msg)
+        //     debugger;
+        //     return setFormDataError({ ...formDataError, uf: true })
+        //   }
+        //   return console.log(formDataError)
+        // })
+      }).finally(() => {
         setIsLoaded(false)
       })
+    }, [formDataContent, formDataError])
+
+  const handleCPF = useCallback(
+    (e: React.FormEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      let data = e.currentTarget.value
+      data = `${data.substr(0, 3)}${data.substr(4, 3)}${data.substr(8, 3)}${data.substr(12, 2)}`
+      setFormDataContent({ ...formDataContent, cpf: data })
     }, [formDataContent])
 
   const handleZip = useCallback(
@@ -44,13 +106,12 @@ const FormAddPatient: React.FC = () => {
         response => {
           setFormDataContent({
             ...formDataContent,
-            zip_code: response.data.cep,
+            zip_code: `${response.data.cep.substr(0, 5)}${response.data.cep.substr(6, 3)}`,
             street: response.data.logradouro,
             district: response.data.bairro,
             locale: response.data.localidade,
             uf: response.data.uf
           })
-          console.log(formDataContent)
         }
       ).catch(err => toast.error('Ooops, algo deu errado')).finally(() => {
         setIsLoaded(false)
@@ -59,75 +120,78 @@ const FormAddPatient: React.FC = () => {
 
   return (
     <FormAddPatientContent>
-      <form className="form-field">
-        <TextField label="Nome*" color="primary" required
-          onChange={e => setFormDataContent({ ...formDataContent, name: e.target.value })}
-        />
-        <CPFInput label="CPF*" color="primary"
-          onChange={e => setFormDataContent({ ...formDataContent, cpf: e.target.value })}
-        />
-        <TextField label="Email*" color="primary" required
-          onChange={e => setFormDataContent({ ...formDataContent, email: e.target.value })}
-        />
-        <PhoneInput label="Telefone" color="primary"
-          onChange={e => setFormDataContent({ ...formDataContent, phone: e.target.value })}
-        />
-        <PhoneInput label="Celular" color="primary"
-          onChange={e => setFormDataContent({ ...formDataContent, cellphone: e.target.value })}
-        />
-        <FormControl color="primary" required>
-          <InputLabel id="blood-patient" >Tipo Sanguíneo*</InputLabel>
-          <Select
-            labelId="blood-patient"
-            label="Tipo Sanguíneo"
-            onChange={e => setFormDataContent({ ...formDataContent, blood_type: e.target.value })}
-          >
-            <MenuItem value='null'>
-              <em>Escolha o tipo sanguíneo</em>
-            </MenuItem>
-            <MenuItem value='A+'>A+</MenuItem>
-            <MenuItem value='A-'>A-</MenuItem>
-            <MenuItem value='B+'>B+</MenuItem>
-            <MenuItem value='B-'>B-</MenuItem>
-            <MenuItem value='O+'>O+</MenuItem>
-            <MenuItem value='O-'>O-</MenuItem>
-            <MenuItem value='AB+'>AB+</MenuItem>
-            <MenuItem value='AB-'>AB-</MenuItem>
-          </Select>
-        </FormControl>
-        <div>
-          <ZipInput label="CEP*" color="primary"
-            onChange={e => setZipContent({ ...ZipContent, cep: e.target.value })}
+      <form onSubmit={patientSubmit}>
+        <div className="form-field">
+          <TextField label="Nome" color="primary"
+            onChange={e => setFormDataContent({ ...formDataContent, name: e.target.value })}
           />
-          {isLoaded ? (
-            <Button id="check-address" variant="contained" color="primary" disableElevation disabled>Verificar</Button>
-          ) : (
-            <Button id="check-address" onClick={handleZip} variant="contained" color="primary" disableElevation>Verificar</Button>
-          )}
+          <CPFInput label="CPF" color="primary" error={formDataError.data[0].value}
+            onChange={handleCPF}
+          />
+          <TextField label="Email" color="primary" error={formDataError.data[1].value}
+            onChange={e => setFormDataContent({ ...formDataContent, email: e.target.value })}
+          />
+          <PhoneInput label="Telefone" color="primary"
+            onChange={e => setFormDataContent({ ...formDataContent, phone: e.target.value.replace(" ", "") })}
+          />
+          <PhoneInput label="Celular" color="primary"
+            onChange={e => setFormDataContent({ ...formDataContent, cellphone: e.target.value.replace(" ", "") })}
+          />
+          <FormControl color="primary"  >
+            <InputLabel id="blood-patient" >Tipo Sanguíneo*</InputLabel>
+            <Select
+              labelId="blood-patient"
+              label="Tipo Sanguíneo"
+              onChange={e => setFormDataContent({ ...formDataContent, blood_type: e.target.value })}
+            >
+              <MenuItem value='null'>
+                <em>Escolha o tipo sanguíneo</em>
+              </MenuItem>
+              <MenuItem value='A+'>A+</MenuItem>
+              <MenuItem value='A-'>A-</MenuItem>
+              <MenuItem value='B+'>B+</MenuItem>
+              <MenuItem value='B-'>B-</MenuItem>
+              <MenuItem value='O+'>O+</MenuItem>
+              <MenuItem value='O-'>O-</MenuItem>
+              <MenuItem value='AB+'>AB+</MenuItem>
+              <MenuItem value='AB-'>AB-</MenuItem>
+            </Select>
+          </FormControl>
+          <div>
+            <ZipInput label="CEP" color="primary" error={formDataError.data[2].value}
+              onChange={e => setZipContent({ ...ZipContent, cep: e.target.value })}
+            />
+            {isLoaded ? (
+              <Button id="check-address" variant="contained" color="primary" disableElevation disabled>Verificar</Button>
+            ) : (
+              <Button id="check-address" onClick={handleZip} variant="contained" color="primary" disableElevation>Verificar</Button>
+            )}
+          </div>
+          <TextField label="Rua" color="primary" value={formDataContent.street} focused
+            onChange={e => setFormDataContent({ ...formDataContent, street: e.target.value })}
+          />
+          <TextField label="Número" color="primary" value={formDataContent.number} focused
+            onChange={e => setFormDataContent({ ...formDataContent, number: e.target.value })}
+          />
+          <TextField label="Bairro" color="primary" value={formDataContent.district} focused
+            onChange={e => setFormDataContent({ ...formDataContent, district: e.target.value })}
+          />
+          <TextField label="Cidade" color="primary" value={formDataContent.locale} focused
+            onChange={e => setFormDataContent({ ...formDataContent, locale: e.target.value })}
+          />
+          <TextField label="Estado" color="primary" value={formDataContent.uf} focused error={formDataError.data[3].value}
+            onChange={e => setFormDataContent({ ...formDataContent, uf: e.target.value })}
+          />
         </div>
-        <TextField label="Rua*" color="primary" value={formDataContent.street} focused required
-          onChange={e => setFormDataContent({ ...formDataContent, street: e.target.value })}
-        />
-        <TextField label="Número*" color="primary" value={formDataContent.number} focused required
-          onChange={e => setFormDataContent({ ...formDataContent, number: e.target.value })}
-        />
-        <TextField label="Bairro*" color="primary" value={formDataContent.district} focused required
-          onChange={e => setFormDataContent({ ...formDataContent, district: e.target.value })}
-        />
-        <TextField label="Cidade*" color="primary" value={formDataContent.locale} focused required
-          onChange={e => setFormDataContent({ ...formDataContent, locale: e.target.value })}
-        />
-        <TextField label="Estado*" color="primary" value={formDataContent.uf} focused required
-          onChange={e => setFormDataContent({ ...formDataContent, uf: e.target.value })}
-        />
+        {isLoaded ? (
+          <Button variant="contained" color="primary" disabled fullWidth>
+            <CircularProgress size="20px" />
+          </Button>
+        ) : (
+          <Button variant="contained" type="submit" color="primary" fullWidth>Cadastrar Paciente</Button>
+        )}
       </form>
-      { isLoaded ? (
-        <Button variant="contained" color="primary" disabled>
-          <CircularProgress size="20px" />
-        </Button>
-      ) : (
-        <Button onClick={patientSubmit} variant="contained" color="primary">Cadastrar Paciente</Button>
-      )}
+
     </FormAddPatientContent>
   );
 }

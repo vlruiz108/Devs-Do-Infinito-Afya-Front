@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const MedRecordContent = styled.div`
+  background: rgb(58,217,223);
+  background: linear-gradient(155deg, rgba(58,217,223,1) 0%, rgba(92,173,176,1) 100%);
+
   & #main{
     justify-content: center;
-    background: rgb(58,217,223);
-    background: linear-gradient(155deg, rgba(58,217,223,1) 0%, rgba(92,173,176,1) 100%);
     align-items: center;
     text-align: center;
     height: 100vh;
@@ -23,17 +24,15 @@ export const MedRecordContent = styled.div`
   & .content{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: start;
     border-radius: 5px;
     width: 80%;
-    background-color: #EDF6FF;
-    box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
     margin:20px 40px;
   }
 
   @media(max-width: 960px){
     & #main{
-      height: 100vh;
+      height: 1050px;
     }
 
     & .container{
@@ -46,8 +45,9 @@ export const MedRecordContent = styled.div`
 
     & .content{
       width: 100%;
-      height: 80vh;
-      margin: 0;
+      height: 900px;
+      margin: 10px 0;
+      padding: 0;
     }
   }
 `

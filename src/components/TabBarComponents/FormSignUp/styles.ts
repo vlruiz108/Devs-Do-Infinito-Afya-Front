@@ -64,5 +64,13 @@ export const FormSignUpContent = styled.div`
 
   @media(max-width: 960px){
     margin: 10px auto;
+    width: 100%;
+
+    & form{
+      width: 100%;
+      & input{
+        width: 100%;
+      }
+    }
   }
 `

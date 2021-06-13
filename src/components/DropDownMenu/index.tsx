@@ -19,7 +19,7 @@ const DropDownMenu: React.FC = () => {
           {items.map((item, i) => {
             return path !== item.path && <Link key={i} to={item.path}>{item.name}</Link>
           })}
-          <Link to="/">Sair</Link>
+          <Link to="/" onClick={() => localStorage.removeItem('@TokenAGMed')}>Sair</Link>
         </nav>
       </label>
     </Container >

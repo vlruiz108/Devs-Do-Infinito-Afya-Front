@@ -20,7 +20,7 @@ const TabBar: React.FC<{
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" style={{ zIndex: 0 }}>
         <Tabs
           variant="fullWidth"
           value={value}
