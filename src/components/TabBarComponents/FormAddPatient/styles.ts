@@ -35,7 +35,19 @@ export const FormAddPatientContent = styled.div`
   }
 
   @media(max-width: 960px){
-    width: 80%;
-    height: 690px;
+    width: 95%;
+    height: 1200px;
+    padding: 10px 2.5%;
+    margin:0;
+
+    & .form-field{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    }
+
+    & button{
+    margin: 60px 0 30px 0;
+  }
   }
 `

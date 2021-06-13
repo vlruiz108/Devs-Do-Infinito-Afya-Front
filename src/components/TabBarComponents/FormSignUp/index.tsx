@@ -31,17 +31,12 @@ const FormSignUp: React.FC = () => {
       setIsRegistered(true)
       api.post('register', formDataContent).then(
         response => {
-          localStorage.setItem('@TokenAGMed', response.data.token);
-          toast.success('Sucesso no cadastro!')
-          history.push('/home')
+          toast.success('Sucesso no cadastro! Faça o Login')
         }
       ).catch(err => {
         err.response.data.erros.forEach((erro: any) => {
           setFormDataError(true)
-          if (erro.msg === "Informe um e-mail válido.") {
-            toast.error(erro.msg)
-          }
-          if (erro.msg === "Senha deve conter de 6 a 15 caracteres.") {
+          if (erro.msg === "Informe um e-mail válido." || erro.msg === "Senha deve conter de 6 a 15 caracteres.") {
             toast.error(erro.msg)
           }
         })

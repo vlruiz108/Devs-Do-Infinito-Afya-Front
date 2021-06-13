@@ -30,7 +30,7 @@ export const ClientContent = styled.div`
 
   @media(max-width: 960px){
     & #main{
-      height: 100vh;
+      height: 1050px;
     }
 
     & .container{
@@ -42,7 +42,7 @@ export const ClientContent = styled.div`
 
     & .content{
       width: 100%;
-      height: 95vh;
+      height: 900px;
       margin: 10px 0;
       padding: 0;
     }

@@ -1,4 +1,6 @@
-import { GridColDef } from '@material-ui/data-grid';
+import { GridCellParams, GridColDef } from '@material-ui/data-grid';
+import { Check, Close, Reorder } from '@material-ui/icons';
+import { Box, Button } from '@material-ui/core';
 
 export interface IRawRow {
   id_attendance: number | undefined,
@@ -51,6 +53,135 @@ export interface IPatientRow {
   couple_id: number | undefined,
 }
 
+const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+
+export const columnsMain: GridColDef[] = [
+  {
+    field: 'client_name',
+    headerName: 'Paciente',
+    headerAlign: 'left',
+    flex: 1.6
+  },
+  {
+    field: 'specialist_name',
+    headerName: 'Profissional',
+    headerAlign: 'left',
+    flex: 1.6
+  },
+  {
+    field: 'attendance_value',
+    headerName: 'Valor',
+    headerAlign: 'left',
+    flex: 1.2,
+    valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
+  },
+  {
+    field: 'attendance_status',
+    headerName: 'Status',
+    flex: 1.5,
+    renderCell: (params: GridCellParams) => (
+      <strong>
+        {params.value === "Realizado" &&
+          <Box clone>
+            <Button
+              variant="contained"
+              className="done"
+              startIcon={<Check />}
+            >Realizado</Button>
+          </Box>
+        }
+        {params.value === "Cancelado" &&
+          <Box clone>
+            <Button fullWidth
+              variant="contained"
+              className="canceled"
+              startIcon={<Close />}
+            >Cancelado</Button>
+          </Box>
+        }
+        {params.value === "Agendado" &&
+          <Box clone>
+            <Button fullWidth
+              variant="contained"
+              className="scheduled"
+              startIcon={<Reorder />}
+            >Agendado</Button>
+          </Box>
+        }
+      </strong>
+    ),
+  }
+];
+
+export const columnsCo: GridColDef[] = [
+  {
+    field: 'attendance_date',
+    headerName: 'Data',
+    flex: 1.3
+  }, {
+    field: 'client_name',
+    headerName: 'Paciente',
+    headerAlign: 'left',
+    flex: 1.6
+  },
+  {
+    field: 'specialist_name',
+    headerName: 'Profissional',
+    headerAlign: 'left',
+    flex: 1.3
+  },
+  {
+    field: 'attendance_value',
+    headerName: 'Valor',
+    headerAlign: 'left',
+    flex: 1.3,
+    valueFormatter: ({ value }) => currencyFormatter.format(Number(value)),
+  },
+  {
+    field: 'cellphone_client',
+    headerName: 'Celular do Paciente',
+    flex: 2
+  },
+  {
+    field: 'attendance_status',
+    headerName: 'Status',
+    flex: 1.5,
+    renderCell: (params: GridCellParams) => (
+      <strong>
+        {params.value === "Realizado" &&
+          <Box clone>
+            <Button fullWidth
+              variant="contained"
+              className="done"
+              startIcon={<Check />}
+            >Realizado</Button>
+          </Box>
+        }
+        {params.value === "Cancelado" &&
+          <Box clone>
+            <Button fullWidth
+              variant="contained"
+              className="canceled"
+              startIcon={<Close />}
+            >Cancelado</Button>
+          </Box>
+        }
+        {params.value === "Agendado" &&
+          <Box clone>
+            <Button fullWidth
+              variant="contained"
+              className="scheduled"
+              startIcon={<Reorder />}
+            >Agendado</Button>
+          </Box>
+        }
+      </strong>
+    ),
+  }
+];
 
 export const columnsPatient: GridColDef[] = [
   {

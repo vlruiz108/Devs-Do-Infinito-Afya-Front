@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 export const NavbarContent = styled.nav`
-  width: 20%;
-  height: 700px;
+  position: relative;
+  top: 7vh;
+  width: 16%;
+  height: 600px;
   color: #EDF6FF;
   border-radius: 5px;
   margin: 10px;
   display: flex;
   justify-content: flex-start;
+  gap: 40px;
   align-items: center;
   flex-direction: column;
   background-color: #EDF6FF;

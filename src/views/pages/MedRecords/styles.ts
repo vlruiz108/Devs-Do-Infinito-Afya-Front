@@ -32,7 +32,7 @@ export const MedRecordContent = styled.div`
 
   @media(max-width: 960px){
     & #main{
-      height: 100vh;
+      height: 1050px;
     }
 
     & .container{
@@ -45,8 +45,9 @@ export const MedRecordContent = styled.div`
 
     & .content{
       width: 100%;
-      height: 80vh;
-      margin: 0;
+      height: 900px;
+      margin: 10px 0;
+      padding: 0;
     }
   }
 `

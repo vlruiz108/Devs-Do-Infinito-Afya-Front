@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FormEditProfessionContent = styled.div`
-margin: 0 auto ;
+  margin: 0 auto ;
   width: 85%;
   height: 85%;
   border-radius: 5px;
@@ -35,7 +35,8 @@ margin: 0 auto ;
       gap: 20px; 
       padding: 60px 30px 0 30px;
       background: #fff;
-    }}
+    }
+  }
     & section{
       margin: 0 auto;
       width: 60%;
@@ -51,5 +52,32 @@ margin: 0 auto ;
 
     @media(max-width: 960px){
       width: 100%;
+      height: 900px;
+      
+      & section{
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      & .btn{
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+
+    & form{
+      margin: 0;
+      padding: 0;
+      & #box{
+        margin: 0;
+        padding: 0;
+        width: 95%;
+      height: 95%;
+      padding: 2.5%;
+      }
+    }
+      
     }
 `

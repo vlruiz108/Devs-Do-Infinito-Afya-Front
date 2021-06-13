@@ -6,10 +6,8 @@ export const GridContent = styled.div`
   justify-content: space-around;
   font-size: 14px;
 
-  & #modal{
-    width: 100px;
-    height: 100px;
-    background-color: #ccc;
+  & .MuiFab-root{
+    z-index: 3;
   }
 
   & h2 {
@@ -23,6 +21,12 @@ export const GridContent = styled.div`
 
     & .MuiIconButton-label{
       color: #808080;
+    }
+  }
+
+  & strong{
+    & button{
+    width:100%;
     }
   }
 

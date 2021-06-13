@@ -59,6 +59,7 @@ const FormAddSchedules: React.FC = () => {
   const ScheduleSubmit = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
+      console.log(formSchedule)
       setIsLoaded(true)
       api.post('attendance', formSchedule, {
         headers: {
