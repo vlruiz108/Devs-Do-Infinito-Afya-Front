@@ -1,55 +1,108 @@
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
 ![GitHub language count](https://img.shields.io/github/languages/count/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
 ![GitHub top language](https://img.shields.io/github/languages/top/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
 ![GitHub](https://img.shields.io/github/license/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
+![NPM](https://img.shields.io/npm/l/express?style=plastic)
 
-# Deployed version
+# Devs-Do-Infinito-Afya-Labs
+![logo AGMed](https://github.com/vlruiz108/Devs-Do-Infinito-Afya-Labs/raw/main/Logo.PNG)
 
-To see the deployed version of the project [click here](https://agmed-front-dev.herokuapp.com/).
+## 👥 Autores
+- [Ana Vitória](https://github.com/anavieich)
+- [Felipe Spuza](https://github.com/FelipeSSac)
+- [João Pedro Fiorelli](https://github.com/JoaoFiorelli)
+- [Luis Felipe Santos](https://github.com/LFelipe-sb)
+- [Vanessa Ruiz](https://github.com/vlruiz108)
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### 🎯 Desafio: Criar um sistema para um consultório controlar o cadastro de seus clientes, atendimentos e prontuário dos pacientes.
 
-In the project directory, you can run:
+## ➡Front-end
 
-### `yarn start`
+🚀 Requisitos: 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Apresentar a estrutura do projeto no github
+- Demonstrar tela de login com fundamentos de autenticação e autorização
+- Apresentar telas relacionadas as funcionalidades de cadastro de clientes, profissões, especialistas, atendimentos e consulta de prontuários.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+Tabela de conteúdos
+=================
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!--ts-->
+   * [Front-end](#front-end)
+   * [Features](#features)
+   * [Instalação](#instalação)
+   * [Como rodar a aplicação](#como-rodar-a-aplicação)
+   * [Telas](#telas)
+   * [Relacionado](#relacionado)
+<!--te-->
 
-### `yarn build`
+<h4 align="center"> 
+	🚧  Application Select 🚀 Em construção...  🚧
+</h4>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 📍Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [x] Criação de usuário (cadastro)
+- [X] Login de usuário
+- [X] Recuperação de senha
+- [x] Cadastro de clientes
+- [x] Cadastro de especialistas
+- [x] Listagem dos especialistas
+- [x] Cadastro de profissão
+- [x] Edição de profissão
+- [x] Agendamento dos atendimentos
+- [x] Listagem de pacientes
+- [x] cadastro de histórico no prontuário do agendamento
+- [x] onfirmação de consulta
+- [x] Registro de protuário
+- [x] Registro de históricos
+- [x] Autenticação de Token
+- [x] Tratamento de erros nos formulários
+- [x] Consumo da API dos correios
+- [x] Layout responsivo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🖥Telas
+As telas presentes em nossa solução, contendo as features supracitadas estão contempladas no vídeo abaixo 
 
-### `yarn eject`
+[![Devs Do Infinito - Front](https://res.cloudinary.com/marcomontalbano/image/upload/v1623702310/video_to_markdown/images/youtube--JJAb-j0JRKY-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=JJAb-j0JRKY "Devs Do Infinito - Front")
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 📍Instalação
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Pré requisitos
+Git: [Git](https://git-scm.com)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Instalar o Node: [Node](https://nodejs.org)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Instalar Visual Studio Code: [Visual Studio Code](https://code.visualstudio.com/download)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Como rodar a aplicação
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Certifique de ter um arquivo .env na pasta raiz com as configurações de banco de dados.
+
+##### Instale as Dependências
+  
+  ```bash
+  yarn build
+  ```
+  ```bash
+  npm run build
+  ```
+  
+  - Iniciar a aplicação
+
+  ```bash
+  yarn start
+  ```
+   ```bash
+  npm start
+  ```
+
+### Relacionado
+
+
+* [https://devs-agmed-afya.herokuapp.com](https://devs-agmed-afya.herokuapp.com)
