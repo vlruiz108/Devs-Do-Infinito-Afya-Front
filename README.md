@@ -1,3 +1,8 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
+![GitHub language count](https://img.shields.io/github/languages/count/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
+![GitHub top language](https://img.shields.io/github/languages/top/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
+![GitHub](https://img.shields.io/github/license/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
+
 # Deployed version
 
 To see the deployed version of the project [click here](https://agmed-front-dev.herokuapp.com/).
