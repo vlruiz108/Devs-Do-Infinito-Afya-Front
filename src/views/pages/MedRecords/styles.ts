@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const MedRecordContent = styled.div`
-  background: rgb(58,217,223);
-  background: linear-gradient(155deg, rgba(58,217,223,1) 0%, rgba(92,173,176,1) 100%);
-
   & #main{
+    min-height: 800px;
+    background: rgb(58,217,223);
+    background: linear-gradient(155deg, rgba(58,217,223,1) 0%, rgba(92,173,176,1) 100%);
     justify-content: center;
     align-items: center;
     text-align: center;
