@@ -3,6 +3,10 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
 ![GitHub](https://img.shields.io/github/license/vlruiz108/Devs-Do-Infinito-Afya-Front?style=plastic)
 
+# Deployed version
+
+To see the deployed version of the project [click here](https://agmed-front-dev.herokuapp.com/).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

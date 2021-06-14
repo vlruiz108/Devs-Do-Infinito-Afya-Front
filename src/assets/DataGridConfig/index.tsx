@@ -24,23 +24,24 @@ export interface IRawRow {
 }
 
 export interface IMainRow {
-  id: number | undefined,
+  id: string | undefined,
+  id_attendance: string | undefined,
   attendance_date: string,
   specialist_name: string,
+  attendance_time: string,
   client_name: string,
   email_client: string,
   attendance_value: string,
   attendance_status: string,
-  couple_id: number | undefined,
+  FK_id_med_reg: string,
+  FK_id_specialist: string,
 }
-
 export interface IProRow {
   id: number | undefined,
   register: string,
   profession_name: string,
   specialist_name: string,
   email: string,
-  couple_id: number | undefined,
 }
 
 export interface IPatientRow {
@@ -50,10 +51,9 @@ export interface IPatientRow {
   client_name: string,
   email: string,
   id_med_reg: string,
-  couple_id: number | undefined,
 }
 
-const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+export const currencyFormatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL',
 });

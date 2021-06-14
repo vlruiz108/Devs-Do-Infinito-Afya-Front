@@ -40,9 +40,16 @@ export const MedRecListContent = styled.div`
   }
 
   & .item{
+      max-height: 300px;
       width: 90%;
       margin: 30px;
       border-radius: 5px;
       background: #fff;
+    }
+
+    @media(max-width: 960px){
+      & .historic{
+        max-height: 450px;
+      }
     }
 `

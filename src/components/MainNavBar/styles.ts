@@ -52,6 +52,7 @@ export const NavbarContent = styled.nav`
     & img{
       width: 100px;
       height: auto;
+      filter: drop-shadow(5px 5px 5px #222222);
     }
   }
 

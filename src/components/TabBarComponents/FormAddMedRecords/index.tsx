@@ -14,10 +14,22 @@ interface IMedRec {
   description: string;
 }
 
+interface IData {
+  attendance_time: string | undefined;
+  attendance_date: string | undefined;
+  attendance_value: string | undefined;
+  attendance_status: string | undefined;
+  FK_id_med_reg: string | undefined;
+  FK_id_specialist: string | undefined;
+  id_attendance: string | undefined;
+}
+
 const FormAddMedRecords: React.FC = () => {
 
   const [patients, setPatients] = useState<IAutoMedRec[]>([])
   const [formMedRec, setFormMedRec] = useState<IMedRec>({} as IMedRec)
+
+  const [data, setData] = useState<IData>({} as IData)
 
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
@@ -29,7 +41,12 @@ const FormAddMedRecords: React.FC = () => {
       }
     }).then(
       response => {
-        setPatients(response.data)
+        const datas = response.data
+        for (let i = 0; i < datas.length; i++) {
+          datas[i].attendance_time = (new Date(datas[i].attendance_date).toLocaleTimeString('pt-BR')).slice(0, 5)
+          datas[i].attendance_date = new Date(datas[i].attendance_date).toLocaleDateString('pt-BR')
+        }
+        setPatients(datas)
       }
     ).catch(err => console.error(err))
   }, [])
@@ -38,6 +55,11 @@ const FormAddMedRecords: React.FC = () => {
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setIsLoaded(true)
+      api.put('attendance', data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
+        }
+      })
       api.post('historic', formMedRec, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
@@ -47,7 +69,7 @@ const FormAddMedRecords: React.FC = () => {
           toast.success('Sucesso no cadastro!')
         }
       ).catch(err => toast.error('Ooops algo deu errado, tente novamente mais tarde')).finally(() => setIsLoaded(false))
-    }, [formMedRec])
+    }, [data, formMedRec])
 
   return (
     <FormMRContent>
@@ -58,9 +80,21 @@ const FormAddMedRecords: React.FC = () => {
             options={patients}
             fullWidth
             autoHighlight
-            onChange={(e, value) => setFormMedRec({ ...formMedRec, FK_id_attendances: value?.id })}
+            onChange={(e, value) => {
+              setFormMedRec({ ...formMedRec, FK_id_attendances: value?.id })
+              setData({
+                ...data,
+                attendance_time: value?.attendance_time,
+                attendance_date: `${value?.attendance_date.split("/")[2]}-${value?.attendance_date.split("/")[1]}-${value?.attendance_date.split("/")[0]}`,
+                attendance_value: value?.attendance_value,
+                attendance_status: "REALIZADO",
+                FK_id_specialist: value?.FK_id_specialist,
+                FK_id_med_reg: value?.FK_id_med_reg,
+                id_attendance: value?.id
+              })
+            }}
             getOptionLabel={(option) => option.client_name}
-            groupBy={(option) => new Date(option.attendance_date).toLocaleDateString('pt-br')}
+            groupBy={(option) => option.attendance_date}
             renderInput={(params) => <TextField {...params} label="Selecione a consulta (nome de paciente)" variant="outlined" required />}
           />
           <TextField

@@ -52,7 +52,7 @@ export const FormEditProfessionContent = styled.div`
 
     @media(max-width: 960px){
       width: 100%;
-      height: 900px;
+      height: 700px;
       
       & section{
       margin: 0;

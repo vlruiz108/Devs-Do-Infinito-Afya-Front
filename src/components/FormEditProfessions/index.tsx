@@ -7,6 +7,7 @@ import { Button, TextField, CircularProgress } from '@material-ui/core';
 import { api } from '../../service/api';
 import { IProfession } from '../../assets/FormAddClientConfig';
 import { Autocomplete } from '@material-ui/lab';
+import { toast } from 'react-toastify';
 
 interface IProForm {
   profession_name: string;
@@ -50,9 +51,9 @@ const FormEditProfessions: React.FC = () => {
         }
       }).then(
         response => {
-          console.log('Sucesso')
+          toast.success('Profissão editada com sucesso!')
         }
-      ).catch(err => console.log('Ooops, algo deu errado')).finally(() => {
+      ).catch(err => toast.error('Ooops, algo deu errado!')).finally(() => {
         setIsLoaded(false)
       })
     }, [professionName])
@@ -68,9 +69,9 @@ const FormEditProfessions: React.FC = () => {
         }
       }).then(
         response => {
-          console.log('Sucesso')
+          toast.success('Profissão cadastrada com sucesso!')
         }
-      ).catch(err => console.log('Ooops, algo deu errado')).finally(() => {
+      ).catch(err => toast.error('Ooops, algo deu errado!')).finally(() => {
         setIsLoaded(false)
       })
     }, [formPro])

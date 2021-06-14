@@ -14,7 +14,7 @@ export const FormSignInContent = styled.div`
   box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
   margin: 0 auto;
 
-  .icon{
+  & .icon{
     margin: 0 auto;
     background: #7C0000;
     width: 40px;

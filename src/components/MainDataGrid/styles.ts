@@ -56,7 +56,6 @@ export const GridContent = styled.div`
       border-radius:10px;
       color: #fff;
     }
-    
   }
 
   & .co-item{
@@ -66,7 +65,7 @@ export const GridContent = styled.div`
     width: 55.5%;
 
     & .done{
-      background-color: #0AF060;
+      background-color: #0ACF35;
       width: 85%;
       border-radius:10px;
       color: #fff;
@@ -88,8 +87,14 @@ export const GridContent = styled.div`
     
   }
 
-  & .value-1{
-    background-color: #EDF6FF;
+  & .value-Realizado{
+    background-color: rgba(10,150,60,0.1);
+  }
+  & .value-Cancelado{
+    background-color: rgba(230,13,40,0.1);
+  }
+  & .value-Agendado{
+    background-color: rgba(07,67,200,0.1);
   }
 
   @media(max-width: 960px){

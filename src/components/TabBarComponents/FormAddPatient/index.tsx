@@ -1,4 +1,4 @@
-import React, { useState, useCallback, FormEvent } from 'react';
+import React, { useState, useCallback, FormEvent, useEffect } from 'react';
 
 import { CPFInput, PhoneInput, ZipInput } from '../../MaskedInputs';
 import { FormAddPatientContent } from './styles';
@@ -38,11 +38,15 @@ const FormAddPatient: React.FC = () => {
       { name: 'zip', value: false, message: 'CEP inválido' },
       { name: 'uf', value: false, message: 'UF inválida' },
     ]
-  });
+  })
 
   const [ZipContent, setZipContent] = useState<IZipContent>({} as IZipContent);
 
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    toast.info('Campos obrigatórios *')
+  }, [])
 
   const patientSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -57,34 +61,14 @@ const FormAddPatient: React.FC = () => {
           toast.success('Sucesso no cadastro!')
         }
       ).catch(err => {
-        formDataError?.data.map((data: any, i: any) => {
-          !!err.response.data.errors && console.log(`${data.value} // ${i}`)
-        })
-        console.log(err.response.data.errors)
-        // err.response.data.errors.map((erro: any) => {
-        //   err.msg ? err.
-        //   if (erro.msg === "CEP inválido") {
-        //     toast.error(erro.msg)
-        //     debugger;
-        //     return setFormDataError({ ...formDataError, zip: true })
-        //   }
-        //   if (erro.msg === "Número de CPF informado inválido.") {
-        //     toast.error(erro.msg)
-        //     debugger;
-        //     return setFormDataError({ ...formDataError, cpf: true })
-        //   }
-        //   if (erro.msg === "Entre com um email válido") {
-        //     toast.error(erro.msg)
-        //     debugger;
-        //     return setFormDataError({ ...formDataError, email: true })
-        //   }
-        //   if (erro.msg === "UF inválida") {
-        //     toast.error(erro.msg)
-        //     debugger;
-        //     return setFormDataError({ ...formDataError, uf: true })
-        //   }
-        //   return console.log(formDataError)
-        // })
+        for (let x = 0; x < formDataError.data.length; x++) {
+          for (let y = 0; y < err.response.data.errors.length; y++) {
+            if (formDataError.data[x].message === err.response.data.errors[y].msg) {
+              formDataError.data[x].value = true
+              toast.error(err.response.data.errors[y].msg)
+            }
+          }
+        }
       }).finally(() => {
         setIsLoaded(false)
       })
@@ -122,13 +106,13 @@ const FormAddPatient: React.FC = () => {
     <FormAddPatientContent>
       <form onSubmit={patientSubmit}>
         <div className="form-field">
-          <TextField label="Nome" color="primary"
+          <TextField label="Nome" color="primary" required
             onChange={e => setFormDataContent({ ...formDataContent, name: e.target.value })}
           />
-          <CPFInput label="CPF" color="primary" error={formDataError.data[0].value}
+          <CPFInput label="CPF" color="primary" error={formDataError.data[0].value} required
             onChange={handleCPF}
           />
-          <TextField label="Email" color="primary" error={formDataError.data[1].value}
+          <TextField label="Email" color="primary" error={formDataError.data[1].value} required
             onChange={e => setFormDataContent({ ...formDataContent, email: e.target.value })}
           />
           <PhoneInput label="Telefone" color="primary"
@@ -137,8 +121,8 @@ const FormAddPatient: React.FC = () => {
           <PhoneInput label="Celular" color="primary"
             onChange={e => setFormDataContent({ ...formDataContent, cellphone: e.target.value.replace(" ", "") })}
           />
-          <FormControl color="primary"  >
-            <InputLabel id="blood-patient" >Tipo Sanguíneo*</InputLabel>
+          <FormControl color="primary" required>
+            <InputLabel id="blood-patient" >Tipo Sanguíneo</InputLabel>
             <Select
               labelId="blood-patient"
               label="Tipo Sanguíneo"
@@ -158,7 +142,7 @@ const FormAddPatient: React.FC = () => {
             </Select>
           </FormControl>
           <div>
-            <ZipInput label="CEP" color="primary" error={formDataError.data[2].value}
+            <ZipInput label="CEP" color="primary" error={formDataError.data[2].value} required
               onChange={e => setZipContent({ ...ZipContent, cep: e.target.value })}
             />
             {isLoaded ? (
@@ -167,19 +151,19 @@ const FormAddPatient: React.FC = () => {
               <Button id="check-address" onClick={handleZip} variant="contained" color="primary" disableElevation>Verificar</Button>
             )}
           </div>
-          <TextField label="Rua" color="primary" value={formDataContent.street} focused
+          <TextField label="Rua" color="primary" value={formDataContent.street} InputLabelProps={{ shrink: true }} required
             onChange={e => setFormDataContent({ ...formDataContent, street: e.target.value })}
           />
-          <TextField label="Número" color="primary" value={formDataContent.number} focused
+          <TextField label="Número" color="primary" value={formDataContent.number} InputLabelProps={{ shrink: true }} required
             onChange={e => setFormDataContent({ ...formDataContent, number: e.target.value })}
           />
-          <TextField label="Bairro" color="primary" value={formDataContent.district} focused
+          <TextField label="Bairro" color="primary" value={formDataContent.district} InputLabelProps={{ shrink: true }} required
             onChange={e => setFormDataContent({ ...formDataContent, district: e.target.value })}
           />
-          <TextField label="Cidade" color="primary" value={formDataContent.locale} focused
+          <TextField label="Cidade" color="primary" value={formDataContent.locale} InputLabelProps={{ shrink: true }} required
             onChange={e => setFormDataContent({ ...formDataContent, locale: e.target.value })}
           />
-          <TextField label="Estado" color="primary" value={formDataContent.uf} focused error={formDataError.data[3].value}
+          <TextField label="Estado" color="primary" value={formDataContent.uf} InputLabelProps={{ shrink: true }} error={formDataError.data[3].value} required
             onChange={e => setFormDataContent({ ...formDataContent, uf: e.target.value })}
           />
         </div>
@@ -188,10 +172,9 @@ const FormAddPatient: React.FC = () => {
             <CircularProgress size="20px" />
           </Button>
         ) : (
-          <Button variant="contained" type="submit" color="primary" fullWidth>Cadastrar Paciente</Button>
+          <Button variant="contained" type="submit" style={{ marginTop: 25 }} color="primary" fullWidth>Cadastrar Paciente</Button>
         )}
       </form>
-
     </FormAddPatientContent>
   );
 }

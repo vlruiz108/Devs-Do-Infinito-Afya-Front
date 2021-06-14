@@ -70,7 +70,7 @@ const MedRecList: React.FC = () => {
             onChange={(e, value) => setFkId(value?.id)}
             getOptionLabel={(option) => option.client_name}
             groupBy={(option) => new Date(option.attendance_date).toLocaleDateString('pt-br')}
-            renderInput={(params) => <TextField {...params} label="Selecione a consulta (nome de paciente)" variant="outlined" required />}
+            renderInput={(params) => <TextField {...params} label="Selecione a consulta" variant="outlined" required />}
           />
         </div>
       </div>
@@ -78,7 +78,6 @@ const MedRecList: React.FC = () => {
         <div className="historic">
           <List className="item" subheader={<li />} style={{
             overflow: 'auto',
-            maxHeight: 450,
           }}>
             {historic.map((data: any, i: any) => (
               <li key={`section-${i}`} style={{ backgroundColor: 'inherit' }}>
