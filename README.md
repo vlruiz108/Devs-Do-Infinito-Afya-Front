@@ -80,10 +80,6 @@ Instalar o Node: [Node](https://nodejs.org)
 Instalar Visual Studio Code: [Visual Studio Code](https://code.visualstudio.com/download)
 
 
-#### Como rodar a aplicação
-
-Certifique de ter um arquivo .env na pasta raiz com as configurações de banco de dados.
-
 ##### Instale as Dependências
   
   ```bash
@@ -105,4 +101,4 @@ Certifique de ter um arquivo .env na pasta raiz com as configurações de banco 
 ### Relacionado
 
 
-* [https://devs-agmed-afya.herokuapp.com](https://devs-agmed-afya.herokuapp.com)
+* [https://agmed-front-dev.herokuapp.com/](https://agmed-front-dev.herokuapp.com/)
