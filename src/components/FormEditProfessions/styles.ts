@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const FormEditProfessionContent = styled.div`
   margin: 0 auto ;
   width: 85%;
+  min-height: 640px;
   height: 85%;
   border-radius: 5px;
   background-color: #EDF6FF;

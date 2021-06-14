@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ScheduleContent = styled.div`
   & #main{
+    min-height: 770px;
     justify-content: center;
     background: rgb(58,217,223);
     background: linear-gradient(155deg, rgba(58,217,223,1) 0%, rgba(92,173,176,1) 100%);
@@ -31,7 +32,7 @@ export const ScheduleContent = styled.div`
 
   @media(max-width: 960px){
     & #main{
-      height: 100vh;
+      min-height: 870px;
     }
 
     & .container{

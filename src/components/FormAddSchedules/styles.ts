@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const FormAddSchedulesContent = styled.div`
   margin: 0 auto ;
   width: 85%;
+  min-height: 590px;
   height: 85%;
   border-radius: 5px;
   background-color: #EDF6FF;
@@ -54,6 +55,7 @@ export const FormAddSchedulesContent = styled.div`
     margin-top: 5px;
     width: 100%;
     height: 100%;
+    min-height: 700px;
 
     & form{
       height:90%;

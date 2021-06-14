@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ProContent = styled.div`
   & #main{
+    min-height: 900px;
     justify-content: center;
     background: rgb(58,217,223);
     background: linear-gradient(155deg, rgba(58,217,223,1) 0%, rgba(92,173,176,1) 100%);
@@ -23,6 +24,7 @@ export const ProContent = styled.div`
   & .content{
     border-radius: 5px;
     width: 80%;
+    min-height: 840px;
     background-color: #EDF6FF;
     box-shadow: 4px 8px 6px 0px rgba(0,0,0,0.16);
     margin:20px 40px;
