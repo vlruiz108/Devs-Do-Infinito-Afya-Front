@@ -5,7 +5,7 @@ import { FormAddProContent } from './styles';
 
 import { IProfession, IProId, IZipContent } from '../../../assets/FormAddClientConfig';
 
-import { Button, CircularProgress, Fab, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+import { Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 import { toast } from 'react-toastify';
 
 import { api, apiAddress } from '../../../service/api';
@@ -40,6 +40,7 @@ const FormAddPro: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
+    toast.info('Campos obrigatórios *')
     api.get('profession', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
@@ -182,17 +183,6 @@ const FormAddPro: React.FC = () => {
           <Button type="submit" variant="contained" style={{ marginTop: 25 }} color="primary" fullWidth>Cadastrar Profissional</Button>
         )}
       </form>
-      <Fab variant="extended" disabled
-        style={{
-          cursor: "inherit",
-          backgroundColor: '#0767DE',
-          color: '#FFF',
-          position: 'fixed',
-          bottom: 40,
-          left: 50,
-        }}>
-        Campos Obrigatórios *
-      </Fab>
     </FormAddProContent >
   );
 }

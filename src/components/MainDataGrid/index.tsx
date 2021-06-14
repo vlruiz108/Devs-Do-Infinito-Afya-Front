@@ -75,7 +75,6 @@ const MainDataGrid: React.FC = () => {
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
-      console.log(data)
       api.put('attendance', data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('@TokenAGMed')}`
@@ -111,7 +110,7 @@ const MainDataGrid: React.FC = () => {
               <DataGrid className="grid" rows={rowA} columns={columnsMain} pageSize={14} disableMultipleSelection
                 getRowClassName={(params: GridRowParams) => `value-${params.getValue(params.id, 'attendance_status')}`}
                 onRowSelected={(value) => {
-                  if (value.data.attendance_status !== "Cancelado") {
+                  if (value.data.attendance_status === "Agendado") {
                     setIsSelected(value.isSelected)
                     console.log(value.data)
                     setData({
@@ -141,7 +140,7 @@ const MainDataGrid: React.FC = () => {
               <DataGrid className="grid" rows={rowB} columns={columnsCo} pageSize={14}
                 getRowClassName={(params: GridRowParams) => `value-${params.getValue(params.id, 'attendance_status')}`}
                 onRowSelected={(value) => {
-                  if (value.data.attendance_status !== "Cancelado") {
+                  if (value.data.attendance_status === "Agendado") {
                     setIsSelected(value.isSelected)
                     setData({
                       ...data,

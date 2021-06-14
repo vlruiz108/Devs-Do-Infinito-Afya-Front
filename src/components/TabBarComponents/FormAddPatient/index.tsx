@@ -1,4 +1,4 @@
-import React, { useState, useCallback, FormEvent } from 'react';
+import React, { useState, useCallback, FormEvent, useEffect } from 'react';
 
 import { CPFInput, PhoneInput, ZipInput } from '../../MaskedInputs';
 import { FormAddPatientContent } from './styles';
@@ -12,8 +12,7 @@ import {
   MenuItem,
   Select,
   TextField,
-  CircularProgress,
-  Fab
+  CircularProgress
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 
@@ -44,6 +43,10 @@ const FormAddPatient: React.FC = () => {
   const [ZipContent, setZipContent] = useState<IZipContent>({} as IZipContent);
 
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    toast.info('Campos obrigatórios *')
+  }, [])
 
   const patientSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -172,17 +175,6 @@ const FormAddPatient: React.FC = () => {
           <Button variant="contained" type="submit" style={{ marginTop: 25 }} color="primary" fullWidth>Cadastrar Paciente</Button>
         )}
       </form>
-      <Fab variant="extended" disabled
-        style={{
-          cursor: "inherit",
-          backgroundColor: '#0767DE',
-          color: '#FFF',
-          position: 'fixed',
-          bottom: 40,
-          left: 50,
-        }}>
-        Campos Obrigatórios *
-      </Fab>
     </FormAddPatientContent>
   );
 }

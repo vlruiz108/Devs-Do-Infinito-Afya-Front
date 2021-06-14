@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { LoginContent } from './styles';
 
@@ -8,14 +8,8 @@ import { AddCircle, Lock } from '@material-ui/icons';
 import FormSignIn from '../../../components/TabBarComponents/FormSignIn';
 import FormSignUp from '../../../components/TabBarComponents/FormSignUp';
 
-import { toast } from 'react-toastify';
 
 const Login: React.FC = () => {
-
-  useEffect(() => {
-    toast.info('Campos obrigatórios *')
-  })
-
   return (
     <LoginContent>
       <div className="container">
