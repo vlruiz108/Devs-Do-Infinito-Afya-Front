@@ -146,7 +146,7 @@ const FormAddSchedules: React.FC = () => {
                 <CircularProgress size="20px" />
               </Button>
             ) : (
-              <Button variant="contained" style={{ height: 55, width: 300 }} color="primary" type="submit">Cadastrar Paciente</Button>
+              <Button variant="contained" style={{ height: 55, width: 300 }} color="primary" type="submit">Cadastrar Consulta</Button>
             )}
           </div>
         </div>
